@@ -1,1 +1,1 @@
-# SAIGE_QTL_analyses
+# SAIGE-QTL analyses
