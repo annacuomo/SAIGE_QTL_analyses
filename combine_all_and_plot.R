@@ -12,12 +12,11 @@ df = rbindlist(df_list)
 
 # plot p-values
 
-df = df0
 n_tests = nrow(df)
 n_genes = length(unique(df$gene))
 pv = cor.test(-log10(df$p.value), -log10(df$i.p.value))[['p.value']]
 cor = cor.test(-log10(df$p.value), -log10(df$i.p.value))[['estimate']]
-text = paste0("chrom", chrom,", ",n_tests," tests, ",n_genes," genes\ncor = ",round(cor,digits=2),", p-value = ",pv)
+text = paste0("all_chroms, ",n_tests," tests, ",n_genes," genes\ncor = ",round(cor,digits=2),", p-value = ",pv)
 if (pv==0){text = gsub("p-value = 0","p-value < 2e-16",text)}
 p = ggplot(df, aes(x=-log10(p.value), y=-log10(i.p.value))) + geom_point() 
 p = p + geom_abline(slope = 1, intercept = 0, col = "firebrick") + theme_classic()
@@ -29,12 +28,9 @@ p
 
 # plot betas
 
-df = read.csv(paste0(mydir,"chr",chrom,".tsv"), sep="\t")
-n_tests = nrow(df)
-n_genes = length(unique(df$gene))
 pv = cor.test(df$BETA, df$beta)[['p.value']]
 cor = cor.test(df$BETA, df$beta)[['estimate']]
-text = paste0("chrom", chrom,", ",n_tests," tests, ",n_genes," genes\ncor = ",round(cor,digits=2),", p-value = ",pv)
+text = paste0("all_chroms, ",n_tests," tests, ",n_genes," genes\ncor = ",round(cor,digits=2),", p-value = ",pv)
 if (pv==0){text = gsub("p-value = 0","p-value < 2e-16",text)}
 p = ggplot(df, aes(x=BETA, y=beta)) + geom_point() 
 p = p + geom_vline(xintercept = 0, col = "firebrick") + geom_hline(yintercept = 0, col = "firebrick") 
