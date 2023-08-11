@@ -95,8 +95,26 @@ for (chrom in 1:22){
 options(repr.plot.width = 14, repr.plot.height = 8) 
 
 set.seed(12345) 
+
+
+mydir = "/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/from_wei/B_IN_cis_results_highly_expressed_genes/joint_tables/"
 for (chrom in 1:22){
     df = read.csv(paste0(mydir,"chr",chrom,".tsv"), sep="\t")
+    df <- df[rowSums(is.na(df)) == 0, ]
+    df$pv_uniform <- runif(dim(df)[1], min = 0, max = 1)
+    p1 = ggplot(df, aes(x=sort(-log10(pv_uniform)), y=sort(-log10(p.value)))) + geom_point() 
+    p1 = p1 + geom_abline(slope = 1, intercept = 0, col = "firebrick") + theme_classic()
+    p1 = p1 + theme(text = element_text(size=20)) + ggtitle(paste0("chrom",chrom,", SAIGE-QTL"))
+    p2 = ggplot(df, aes(x=sort(-log10(pv_uniform)), y=sort(-log10(i.p.value)))) + geom_point() 
+    p2 = p2 + geom_abline(slope = 1, intercept = 0, col = "firebrick") + theme_classic()
+    p2 = p2 + theme(text = element_text(size=20)) + ggtitle(paste0("chrom",chrom,", Matrix eQTL"))
+    print(plot_grid(p1, p2, ncol = 2))
+}
+
+
+mydir = "/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/from_wei/B_IN_cis_results_genes_expressed_in_more_than_1pct_cells/joint_tables/"
+for (chrom in 1:22){
+    df = read.csv(paste0(mydir,"new_chr",chrom,".tsv"), sep="\t")
     df <- df[rowSums(is.na(df)) == 0, ]
     df$pv_uniform <- runif(dim(df)[1], min = 0, max = 1)
     p1 = ggplot(df, aes(x=sort(-log10(pv_uniform)), y=sort(-log10(p.value)))) + geom_point() 
