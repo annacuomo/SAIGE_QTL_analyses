@@ -97,6 +97,7 @@ options(repr.plot.width = 14, repr.plot.height = 8)
 set.seed(12345) 
 for (chrom in 1:22){
     df = read.csv(paste0(mydir,"chr",chrom,".tsv"), sep="\t")
+    df <- df[rowSums(is.na(df)) == 0, ]
     df$pv_uniform <- runif(dim(df)[1], min = 0, max = 1)
     p1 = ggplot(df, aes(x=sort(-log10(pv_uniform)), y=sort(-log10(p.value)))) + geom_point() 
     p1 = p1 + geom_abline(slope = 1, intercept = 0, col = "firebrick") + theme_classic()
