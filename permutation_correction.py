@@ -1,4 +1,5 @@
-# based on scripts from limix_qtl
+# based on scripts from limix_qtl (https://github.com/single-cell-genetics/limix_qtl/tree/master/Limix_QTL)
+# implementing the beta distribution Fast QTL method: https://academic.oup.com/bioinformatics/article/32/10/1479/1742545
 
 def define_correction_function(top_pvalues_perm, cis_mode):
     #Always try to use the MLE estimator, new default to 10 permutations.
