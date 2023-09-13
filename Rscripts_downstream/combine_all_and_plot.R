@@ -1,8 +1,14 @@
+# this script combines joint results between Matrix eQTL and SAIGE-QTL
+# to create one single comparison plot
+
+# load useful R libraries
 library(ggplot2)
 library(data.table)
 
+# this sub-folder contains joint tables constructed by the `saige_matrix_qtl_combine.R` script
 mydir = "/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/from_wei/B_IN_cis_results_genes_expressed_in_more_than_1pct_cells/joint_tables/"
 
+# combine all results across all chromosomes
 df_list = list()
 for (chrom in 1:22){
     df0 = read.csv(paste0(mydir,"new_chr",chrom,".tsv"), sep="\t")
@@ -26,7 +32,7 @@ myy = (-log10(min(df$i.p.value))*0.85)
 p = p + annotate("text", label = text, x = myx, y = myy, size = 7)
 p
 
-# plot betas
+# plot betas (effect sizes, noting that the models are fundamentally different)
 
 pv = cor.test(df$BETA, df$beta)[['p.value']]
 cor = cor.test(df$BETA, df$beta)[['estimate']]
