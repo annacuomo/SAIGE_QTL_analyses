@@ -1,8 +1,13 @@
+# this script plots comparison plots
+# * p-value comparison
+# * beta comparison
+# * calibration results
+
+# load R libraries
 library(cowplot)
 library(ggplot2)
 
-
-# Genes expressed in > 1% cells
+# Genes expressed in > 1% cells (joint SAIGE-QTL & Matrix eQTL results)
 mydir = "/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/from_wei/B_IN_cis_results_genes_expressed_in_more_than_1pct_cells/joint_tables/"
 
 # plot p-values (SAIGE-QTL vs Matrix eQTL)
@@ -95,7 +100,6 @@ for (chrom in 1:22){
 options(repr.plot.width = 14, repr.plot.height = 8) 
 
 set.seed(12345) 
-
 
 mydir = "/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/from_wei/B_IN_cis_results_highly_expressed_genes/joint_tables/"
 for (chrom in 1:22){
