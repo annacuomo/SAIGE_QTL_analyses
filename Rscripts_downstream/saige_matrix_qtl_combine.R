@@ -1,3 +1,6 @@
+# This scripts combines chromosome-level results between SAIGE-QTL 
+# and Matrix eQTL into combined files to facilitate comparisons
+
 library(data.table)
 
 # SAIGE-QTL results, naive B cells, cis results
