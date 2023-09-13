@@ -1,14 +1,19 @@
+# this script combines results from SAIGE-QTL at chromosome level
+
 library(data.table)
 
+# SAIGE-QTL results, naive B cells, cis results
 # mydir = "/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/from_wei/B_IN_cis_results_highly_expressed_genes/"
 mydir = "/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/from_wei/B_IN_cis_results_genes_expressed_in_more_than_1pct_cells/"
 myfiles = list.files(mydir)
 
+# loop over chromosomes
 for (chrom in 1:22){
     chrom = paste0("chr",chrom,"_")
     df_list = list()
     for (file in myfiles){
         gene = gsub("_.*","",file)
+        # skip a few empty files
         if (length(file[grep(chrom, file)]) == 0){next}
         if (file == "PRR4_B_IN_count_uncond_chr12_cis"){next}
         if (file == "ABCD4_B_IN_count_uncond_chr14_cis"){next}
@@ -19,13 +24,14 @@ for (chrom in 1:22){
             print(gene)
             next
         }
-    #     add info
+        # add info
         df_current$gene = gene
         # combine results across all genes
         df_list[[gene]] = df_current
     }
     df0 = rbindlist(df_list)
 
+    # save chromosome-level files
     newfile = paste0(mydir,chrom,"1Mb_all_results.txt")
     write.table(df0, newfile, sep="\t", row.names=F, col.names=T, quote=F)
 }
