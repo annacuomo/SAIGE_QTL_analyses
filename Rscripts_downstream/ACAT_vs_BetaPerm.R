@@ -109,7 +109,7 @@ Anglis_dir = "/share/ScratchGeneral/anncuo/OneK1K/anglis_files/tensorqtl/"
 # top SNP per gene, contains beta-adjusted p-values
 myfile = paste0(Anglis_dir,"OneK1K_CD4_NC.sig_cis_qtl_pairs.chr1.csv")
 df_sig = read.csv(myfile, sep="\t")
-nrow(df)
+nrow(df_sig)
 
 # load file with all results 
 # all SNPs, nominal p-values only
@@ -119,14 +119,44 @@ nrow(df_all)
 
 # create file for gene-specific p-values
 # extract all unique genes
-genes = unique(df0$phenotype_id)
+genes = unique(df_all$phenotype_id)
 # make data frame
-df1 = data.frame(phenotype_id = genes)
-nrow(df1)
+df_genes = data.frame(phenotype_id = genes)
+nrow(df_genes)
 
 # update data frame with CCT p-values (from nominal)
 for (gene in genes){
-    df_curr = df0[df0$phenotype_id == gene,]
-    df1[df1$phenotype_id == gene,"pval_cct"] = get_CCT_pvalue(df_curr$pval_nominal)
+    df_curr = df_all[df_all$phenotype_id == gene,]
+    df_genes[df_genes$phenotype_id == gene,"pval_cct"] = get_CCT_pvalue(df_curr$pval_nominal)
 }
-head(df1)
+head(df_genes)
+
+# using data.table, combine with Beta approximated results
+df_combined = as.data.frame(data.table(df_sig)[data.table(df_genes), on = c("phenotype_id"), nomatch=0])
+
+# get p-value correlations
+cor(-log10(df2$pval_beta+(10^(-16))), -log10(df2$pval_cct+(10^(-16))))
+
+# plot p-values
+
+p = ggplot(df2, aes(x=-log10(pval_beta), y=-log10(pval_cct))) + geom_point() 
+p = p + geom_abline(slope = 1, intercept = 0, col = "firebrick") + theme_classic()
+p = p + xlim(c(0,300)) + ylim(c(0,300)) 
+p = p + theme(text = element_text(size=20))
+p
+
+# QQ plots
+
+options(repr.plot.width = 12, repr.plot.height = 6) 
+df2$pval_unif <- runif(dim(df2)[1], min = 0, max = 1)
+p = ggplot(df2, aes(x=sort(-log10(pval_unif)), y=sort(-log10(pval_cct)))) + geom_point() 
+p = p + geom_abline(slope = 1, intercept = 0, col = "firebrick") + theme_classic()
+p = p + xlim(c(0,3)) + ylim(c(0,300)) 
+p1 = p + theme(text = element_text(size=20))
+p = ggplot(df2, aes(x=sort(-log10(pval_unif)), y=sort(-log10(pval_beta)))) + geom_point() 
+p = p + geom_abline(slope = 1, intercept = 0, col = "firebrick") + theme_classic()
+p = p + xlim(c(0,3)) + ylim(c(0,300)) 
+p2 = p + theme(text = element_text(size=20))
+plot_grid(p1, p2, ncol = 2)
+
+
