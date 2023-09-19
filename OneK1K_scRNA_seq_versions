@@ -9,20 +9,22 @@
 * Yazar et al, Science 2022
 * 982 individuals
 * 14 cell types
+* removed genes expressed in < 10% individuals
 * pseudobulk expression (mean)
-* sub-optimal PEER factors
+* sub-optimal PEER factors (n=2)
 * Matrix eQTL as well as Spearman correlation
-* For multiple testing correction (MTC), [local FDR directly on nominal p-values](https://github.com/powellgenomicslab/onek1k_phase1/blob/main/single_cell_cis_eQTL_mapping/round1.run_spearman_rank_test.R#L218-L232)
+* For multiple testing correction (MTC), [local FDR directly on nominal p-values](https://github.com/powellgenomicslab/onek1k_phase1/blob/main/single_cell_cis_eQTL_mapping/round1.run_spearman_rank_test.R#L218-L232), results reported for FDR<5%
 
 ## PEER factor results
 
 * Xue et al, Genome Biology 2023
 * 980 individuals
 * 14 cell types
+* removed genes expressed in < 10% individuals. 
 * pseudobulk expression (mean)
-* new improved PEER factors
+* new improved PEER factors. Number of PF for each cell type is different, which is decided by a local greedy algorithm based on the sensitivity analysis.
 * Matrix eQTL results
-* also only FDR for MTC
+* also local FDR for MTC
 
 ## vQTL paper
 
