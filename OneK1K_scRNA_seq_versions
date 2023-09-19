@@ -35,4 +35,4 @@
 * Beta approx for MTC (FastQTL, using 10,000 permutations)
 
 
-Note: pseudobulk calculation should be: 1) SCT normalisation, 2) mean for each donor, gene, cell type, 3) log2(x+1)
+Note: pseudobulk calculation (in all cases) should be: 1) SCT normalisation, 2) mean for each donor, gene, cell type, 3) log2(x+1)
