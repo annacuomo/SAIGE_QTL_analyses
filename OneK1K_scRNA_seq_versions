@@ -12,7 +12,7 @@
 * pseudobulk expression (mean)
 * sub-optimal PEER factors
 * Matrix eQTL as well as Spearman correlation
-* no proper multiple testing correction (MTC), just qvalue
+* no proper multiple testing correction (MTC), just FDR directly on nominal p-values
 
 ## PEER factor results
 
