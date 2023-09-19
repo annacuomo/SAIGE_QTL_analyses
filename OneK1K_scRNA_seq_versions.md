@@ -13,7 +13,7 @@
 * pseudobulk expression (mean)
 * sub-optimal PEER factors (n=2)
 * Matrix eQTL as well as Spearman correlation
-* For multiple testing correction (MTC), [local FDR directly on nominal p-values](https://github.com/powellgenomicslab/onek1k_phase1/blob/main/single_cell_cis_eQTL_mapping/round1.run_spearman_rank_test.R#L218-L232), results reported for FDR<5%
+* For multiple testing correction (MTC), [manually implemented local FDR directly on nominal p-values](https://github.com/powellgenomicslab/onek1k_phase1/blob/main/single_cell_cis_eQTL_mapping/round1.run_spearman_rank_test.R#L218-L232), results reported for FDR<5%
 
 ## PEER factor results
 
@@ -24,7 +24,7 @@
 * pseudobulk expression (mean)
 * new improved PEER factors. Number of PF for each cell type is different, which is decided by a local greedy algorithm based on the sensitivity analysis.
 * Matrix eQTL results
-* also local FDR for MTC
+* also local FDR for MTC (here implemented as part of the [qvalue](https://www.bioconductor.org/packages/release/bioc/html/qvalue.html) package)
 
 ## vQTL paper
 
