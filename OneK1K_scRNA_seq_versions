@@ -1,0 +1,26 @@
+# Data to use for SAIGE-QTL comparison
+
+* Science paper original results, Spearman correlation + Matrix eQTL [1]
+* PEER factor paper results, Matrix eQTL [2]
+* vQTL paper results, TensorQTL [3]
+
+## Science paper results
+
+* Yazar et al, Science 2022
+* 982 individuals
+* sub-optimal PEER factors
+* Matrix eQTL as well as Spearman correlation
+* no proper multiple testing correction, just qvalue
+
+## PEER factor results
+
+* Xue et al, Genome Biology 2023
+* 980 individuals
+* new improved PEER factors
+* Matrix eQTL results
+* also only FDR
+
+## vQTL paper
+
+* Xue et al, in preparation
+
