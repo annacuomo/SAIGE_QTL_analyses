@@ -8,19 +8,29 @@
 
 * Yazar et al, Science 2022
 * 982 individuals
+* 14 cell types
+* pseudobulk expression (mean)
 * sub-optimal PEER factors
 * Matrix eQTL as well as Spearman correlation
-* no proper multiple testing correction, just qvalue
+* no proper multiple testing correction (MTC), just qvalue
 
 ## PEER factor results
 
 * Xue et al, Genome Biology 2023
 * 980 individuals
+* 14 cell types
+* pseudobulk expression (mean)
 * new improved PEER factors
 * Matrix eQTL results
-* also only FDR
+* also only FDR for MTC
 
 ## vQTL paper
 
 * Xue et al, in preparation
+* 980 individuals
+* 14 cell types
+* psedobulk expression (mean), but only on individual-cell type combinations with >= 5 cells
+* new PEER factors,  only on individual-cell type combinations with >= 5 cells
+* TensorQTL
+* Beta approx for MTC (FastQTL, using 10,000 permutations)
 
