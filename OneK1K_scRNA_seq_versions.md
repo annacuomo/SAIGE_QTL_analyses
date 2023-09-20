@@ -12,7 +12,7 @@
 * removed genes expressed in < 10% individuals
 * pseudobulk expression (mean)
 * sub-optimal PEER factors (n=2)
-* Matrix eQTL as well as Spearman correlation
+* [Matrix eQTL](https://academic.oup.com/bioinformatics/article/28/10/1353/213326) as well as Spearman correlation
 * For multiple testing correction (MTC), [manually implemented local FDR directly on nominal p-values](https://github.com/powellgenomicslab/onek1k_phase1/blob/main/single_cell_cis_eQTL_mapping/round1.run_spearman_rank_test.R#L218-L232), results reported for FDR<5%
 
 ## PEER factor results
@@ -34,8 +34,8 @@
 * removed genes expressed in < 10% individuals
 * psedobulk expression (mean), but only on individual-cell type combinations with >= 5 cells
 * new PEER factors,  only on individual-cell type combinations with >= 5 cells (n=10)
-* TensorQTL
-* Beta approx for MTC (FastQTL, using 10,000 permutations)
+* [TensorQTL](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1836-7)
+* Beta approx for MTC ([FastQTL](https://academic.oup.com/bioinformatics/article/32/10/1479/1742545), using 10,000 permutations)
 
 
 Note: pseudobulk calculation (in all cases) should be: 1) SCT normalisation, 2) mean for each donor, gene, cell type, 3) ln(x+1) (base e log)
