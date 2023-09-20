@@ -6,7 +6,7 @@
 
 ## Science paper results
 
-* Yazar et al, Science 2022
+* [Yazar et al, Science 2022](https://www.science.org/doi/full/10.1126/science.abf3041)
 * 982 individuals
 * 14 cell types
 * removed genes expressed in < 10% individuals
@@ -17,7 +17,7 @@
 
 ## PEER factor results
 
-* Xue et al, Genome Biology 2023
+* [Xue et al, Genome Biology 2023](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02873-5)
 * 980 individuals
 * 14 cell types
 * removed genes expressed in < 10% individuals. 
