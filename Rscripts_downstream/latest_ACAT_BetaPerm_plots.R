@@ -27,7 +27,7 @@ for (celltype in celltypes){
     # combine results
     df_combined = as.data.frame(data.table(df_saigeqtl)[data.table(df_tensorqtl), on = c("phenotype_id"), nomatch=0])
     # extract smalles p-value for plotting later
-    m = min(df1$pval_beta,df1$p.value.cct)
+    m = min(df_combined$pval_beta,df_combined$p.value.cct)
     # to avoid log(0), make m the smallest (R) value
     if (m==0){m=5e-324}
     # extract correlation between p-values to print out
