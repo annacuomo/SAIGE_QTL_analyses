@@ -9,7 +9,7 @@ fig_dir <- paste0(tensorqtl_dir,"figures/")
 
 celltypes = c("Plasma", "B_IN", "CD4_NC")
 
-for (celltype in cellytpes){
+for (celltype in celltypes){
   # open SAIGE_QTL file
   saigeqtl_file = paste0(mydir, celltype, "_gene_acat_summary.csv")
   df_saigeqtl = read.csv(saigeqtl_file, row.names=1)
