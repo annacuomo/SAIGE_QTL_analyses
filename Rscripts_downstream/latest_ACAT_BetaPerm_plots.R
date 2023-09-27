@@ -42,7 +42,7 @@ for (celltype in celltypes){
     p = p + xlim(c(0,-log10(m))) + ylim(c(0,-log10(m)))
     p = p + theme(text = element_text(size=20))
     # save
-    pdf(paste0(fig_dir,celltype,"_chr",chrom,"_ACAT_BetaPerm_scatter.pdf"), width=8, height=8)
+    png(paste0(fig_dir,celltype,"_chr",chrom,"_ACAT_BetaPerm_scatter.png"), width=8, height=8)
     p
     dev.off()
   }
