@@ -45,7 +45,6 @@ for (celltype in cellytpes){
     pdf(paste0(fig_dir,celltype,"_chr",chrom,"_ACAT_BetaPerm_scatter.pdf"), width=8, height=8)
     p
     dev.off()
-
-}
+  }
 }  
 
