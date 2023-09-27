@@ -11,7 +11,7 @@ celltypes = c("Plasma", "B_IN", "CD4_NC")
 
 for (celltype in celltypes){
   # open SAIGE_QTL file
-  saigeqtl_file = paste0(mydir, celltype, "_gene_acat_summary.csv")
+  saigeqtl_file = paste0(saigeqtl_dir, celltype, "_gene_acat_summary.csv")
   df_saigeqtl = read.csv(saigeqtl_file, row.names=1)
   # re-define gene to match tensorQTL results
   df_saigeqtl$phenotype_id = df_saigeqtl$gene
