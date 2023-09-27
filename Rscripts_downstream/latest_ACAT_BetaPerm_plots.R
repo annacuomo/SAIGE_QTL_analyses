@@ -20,7 +20,7 @@ for (celltype in celltypes){
   # loop over chromosomes
   for (chrom in 1:22){
     # open tensorQTL file
-    tensorqtl_file = paste0(tensorqtl__dir, celltype,"/",celltype,".sig_cis_qtl_pairs.chr",chrom,".csv")
+    tensorqtl_file = paste0(tensorqtl_dir, celltype,"/",celltype,".sig_cis_qtl_pairs.chr",chrom,".csv")
     df_tensorqtl = read.csv(tensorqtl_file, sep="\t")
     # only consider significant results at FDR<10%
     df_saigeqtl = df_saigeqtl[df_saigeqtl$qv<0.1,]
