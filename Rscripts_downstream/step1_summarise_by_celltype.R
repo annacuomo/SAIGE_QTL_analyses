@@ -1,4 +1,4 @@
-# run as Rscript step1_summarise_by_celltype.R {celltype}
+# run as: Rscript step1_summarise_by_celltype.R {celltype}
 # celltypes = c("B_IN","B_Mem","CD4_NC", "CD4_ET", "CD4_SOX4", "CD8_NC", "CD8_ET",
 #               "CD8_S100B", "DC", "Mono_C", "Mono_NC", "NK_R", "NK", "Plasma")
 
