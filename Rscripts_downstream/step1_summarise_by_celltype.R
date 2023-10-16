@@ -1,9 +1,16 @@
+# run as Rscript step1_summarise_by_celltype.R {celltype}
+# celltypes = c("B_IN","B_Mem","CD4_NC", "CD4_ET", "CD4_SOX4", "CD8_NC", "CD8_ET",
+#               "CD8_S100B", "DC", "Mono_C", "Mono_NC", "NK_R", "NK", "Plasma")
+
+
 library(data.table)
 
 mydir = "/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/from_wei/"
 
 # change, have this as an argument
-celltype = "B_IN"
+args <- commandArgs(trailingOnly=TRUE)
+celltype <- args[1]
+
 ct_dir = paste0(mydir, "cis_", celltype,"/")
 ct_files = list.files(ct_dir, pattern = "singleVar.txt")
 
