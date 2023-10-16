@@ -19,6 +19,7 @@ file_df_list = list()
 for (file in ct_files){
     filename = paste0(ct_dir,file)
     df_curr = as.data.frame(data.table:::fread(filename, header = T, stringsAsFactors = FALSE))
+    if (nrow(df_curr) == 0){next}
     df_curr[["gene"]] = gsub("_.*","",file)
     file_df_list[[file]] = df_curr
 }
