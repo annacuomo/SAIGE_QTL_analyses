@@ -7,7 +7,6 @@ library(data.table)
 
 mydir = "/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/from_wei/"
 
-# change, have this as an argument
 args <- commandArgs(trailingOnly=TRUE)
 celltype <- args[1]
 
