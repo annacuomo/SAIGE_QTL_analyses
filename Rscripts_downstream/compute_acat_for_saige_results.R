@@ -88,14 +88,13 @@ get_CCT_pvalue = function(pvalue, weights=NULL){
 }
 
 # new SAIGE-QTL results, cis results
-mydir = "/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/from_wei/
+mydir = "/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/from_wei/"
 
 args <- commandArgs(trailingOnly=TRUE)
 celltype <- args[1]
 print(celltype)
 
 ct_dir = paste0(mydir, "cis_", celltype, "/")
-print(ct_dir)
 ct_files = list.files(ct_dir, pattern = "singleVar.txt")
 
 gene_level_df = data.frame(gene = gsub("_.*", "", ct_files))
