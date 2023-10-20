@@ -100,9 +100,10 @@ gene_level_df = data.frame(gene = gsub("_.*", "", ct_files))
 for (file in ct_files){
     filename = paste0(ct_dir,file)
     df_curr = as.data.frame(data.table:::fread(filename, header = T, stringsAsFactors = FALSE))
+    df_curr = df_curr[df_curr$AF_Allele>0.05 & df_curr$AF_Allele<0.95,]
     gene = gsub("_.*","",file)
     gene_level_df[gene_level_df$gene == gene, "p.value.cct"] = get_CCT_pvalue(df_curr$p.value)
 }
 
-file = paste0(ct_dir, celltype, "_gene_acat_summary.csv")
+file = paste0(ct_dir, celltype, "_gene_acat_maf5_summary.csv")
 data.table:::fwrite(gene_level_df, file)
