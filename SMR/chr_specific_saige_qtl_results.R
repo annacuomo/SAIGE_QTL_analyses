@@ -1,3 +1,6 @@
+# this script splits all results from SAIGE by chromosome
+# they are also already split by cell type
+
 library(data.table)
 
 results_dir = "/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/from_wei/"
