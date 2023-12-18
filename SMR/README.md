@@ -12,6 +12,16 @@ Here, we run SMR again using summary stats from the same 7 GWAS results, for bot
 
 ### SAIGE-QTL
 
+Preprocessing:
+
+* build chromosome-specific summary stats
+* make Matrix-eQTL like
+
+SMR:
+
+* eQTL p-value threshold: nominal p-value < ?
+* no GWAS p-value threshold
+
 ### Matrix eQTL
 
 * eQTL p-value threshold: nominal p-value < ?
