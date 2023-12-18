@@ -1,6 +1,6 @@
 library(qvalue)
 
-dir = "/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/genes/egenes_saigeqtl_not_tensorqtl/ct_chrom_summary_stats/"
+dir = "/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/ct_chrom_summary_stats/"
 
 celltypes = c("B_IN","B_Mem","CD4_NC", "CD4_ET", "CD4_SOX4", "CD8_NC", "CD8_ET",
               "CD8_S100B", "DC", "Mono_C", "Mono_NC", "NK_R", "NK", "Plasma")
@@ -26,7 +26,9 @@ for (celltype in celltypes){
         df1 = df[,c("SNP","gene","BETA","Tstat","p.value","qv")]
         # rename columns to fit Matrix eQTL format
         colnames(df1)[3:6] = c("beta", "t-stat", "p-value", "FDR")
-        out_file = paste0(dir, "Matrix_eQTL_like/",celltype,"/",celltype,"_chr",chrom,".tsv")
+        out_dir = paste0(dir, "Matrix_eQTL_like/",celltype,"/")
+        if (!dir.exists(out_dir)) {dir.create(out_dir)}
+        out_file = paste0(out_dir,celltype,"_chr",chrom,".tsv")
         data.table:::fwrite(df1, out_file,sep="\t")
     }
 }
