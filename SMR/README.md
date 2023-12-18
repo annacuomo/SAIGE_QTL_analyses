@@ -15,7 +15,7 @@ Here, we run SMR again using summary stats from the same 7 GWAS results, for bot
 Preprocessing:
 
 * [build chromosome-specific summary stats](chr_specific_saige_qtl_results.R)
-* make Matrix-eQTL like
+* [make Matrix-eQTL like](make_matrix_eqtl_like_summary_stats.R)
 
 SMR:
 
