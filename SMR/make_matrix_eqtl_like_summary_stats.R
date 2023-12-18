@@ -27,7 +27,7 @@ for (celltype in celltypes){
         # rename columns to fit Matrix eQTL format
         colnames(df1)[3:6] = c("beta", "t-stat", "p-value", "FDR")
         out_dir = paste0(dir, "Matrix_eQTL_like/",celltype,"/")
-        if (!dir.exists(out_dir)) {dir.create(out_dir)}
+        if (!dir.exists(out_dir)) {dir.create(out_dir,recursive = TRUE)}
         out_file = paste0(out_dir,celltype,"_chr",chrom,".tsv")
         data.table:::fwrite(df1, out_file,sep="\t")
     }
