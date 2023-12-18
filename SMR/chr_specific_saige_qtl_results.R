@@ -12,7 +12,7 @@ for (celltype in celltypes){
   df = read.csv(gzfile(ct_results_file))
   for (chrom in 1:22){
     df_chrom_ct = df[df$CHR==chrom,]
-    out_dir = paste0(out_dir,celltype,"/")
+    out_dir = paste0(out_dir_all,celltype,"/")
     if (!dir.exists(out_dir)) {dir.create(out_dir)}
     out_file = paste0(out_dir,celltype,"_chr",chrom,".txt")
     data.table:::fwrite(df_chrom_ct, out_file)
