@@ -1,17 +1,20 @@
-## SGE SETTINGS
-#$ -cwd
+#!/bin/bash
 #$ -S /bin/bash
+#$ -cwd
+#$ -V
 #$ -q short.q
 #$ -r yes
 #$ -l mem_requested=50G
 #$ -N run_saige
-#$ -o stdout_run_saige_B
-#$ -e stderr_run_saige_B
+#$ -o stdout_run_saige_CD4_NC_sub_1
+#$ -e stderr_run_saige_CD4_NC_sub_1
 #$ -t 1-2510
+#$ -m ae
+#$ -M a.cuomo@garvan.org.au
 
 i=${SGE_TASK_ID};
 
-gene_name=$(sed "${i}q;d" gene_name.txt)
+gene_name=$(sed "${i}q;d" gene_name_chr22.txt)
 
 R_PATH=/share/ScratchGeneral/anncuo/jupyter/conda_notebooks/envs/RSAIGE/bin/
 
@@ -38,37 +41,18 @@ ${R_PATH}/Rscript step1_fitNULLGLMM_qtl.R \
 
 
 ${R_PATH}/Rscript step2_tests_qtl.R       \
-        --bedFile=./input/n.indep_100_n.cell_1.bed      \
-        --bimFile=./input/n.indep_100_n.cell_1.bim      \
-        --famFile=./input/n.indep_100_n.cell_1.fam      \
-        --SAIGEOutputFile=${step2prefix}     \
-        --chrom=2       \
+        --vcfFile=/filter_vcf_r08/chr${i}.dose.filtered.R2_0.8.vcf.gz  \
+        --vcfFileIndex=/filter_vcf_r08/chr${i}.dose.filtered.R2_0.8.vcf.gz.csi  \
+        --SAIGEOutputFile=/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/${gene_name}_1pct_CD4_NC_poisson_test_cis     \
+        --chrom=22       \
         --minMAF=0 \
         --minMAC=20 \
         --LOCO=FALSE    \
-        --GMMATmodelFile=${step1prefix}.rda     \
+        --GMMATmodelFile=/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/${gene_name}_1pct_CD4_NC_poisson_test.rda     \
         --SPAcutoff=2 \
-        --varianceRatioFile=${step1prefix}.varianceRatio.txt    \
+        --varianceRatioFile=/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/${gene_name}_1pct_CD4_NC_poisson_test.varianceRatio.txt    \
         --rangestoIncludeFile=${regionFile}     \
-        --markers_per_chunk=10000
+        --markers_per_chunk=10000 &> /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/${gene_name}_1pct_CD4_NC_poisson_test_cis_`date +%Y-%m-%d.%H:%M:%S`.log
 
 
-
-singularity exec --bind /directflow,/share /share/ScratchGeneral/anncuo/saige_qtl/SAIGE-QTL.sif.4 Rscript /usr/local/bin/step2_tests_qtl.R	 \
-        --bedFile=/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/input/B_IN/${gene_name}_1000000bp.bed  \
-        --bimFile=/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/input/B_IN/${gene_name}_1000000bp.bim  \
-        --famFile=/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/input/B_IN/${gene_name}_1000000bp.fam  \
-        --AlleleOrder=alt-first \
-        --SAIGEOutputFile=/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/output/results/1000000bp/${gene_name}_B_IN.txt  \
-        --chrom=22  \
-        --minMAF=0  \
-        --minMAC=20  \
-        --LOCO=FALSE \
-        --is_fastTest=TRUE      \
-        --GMMATmodelFile=/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/output/${gene_name}_B_IN_poisson_test.rda  \
-        --varianceRatioFile=/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/output/${gene_name}_B_IN_poisson_test.varianceRatio.txt  \
-        --markers_per_chunk=10000  \
-        --pval_cutoff_for_fastTest=0.05  \
-        --SPAcutoff=10000  &>  /share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/output/${gene_name}_B_IN_poisson_single_`date +%Y-%m-%d.%H:%M:%S`.log
- 
- qstat -j $JOB_ID > /share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/output/${gene_name}_B_IN_poisson_single_`date +%Y-%m-%d.%H:%M:%S`_qstat.txt
+ qstat -j $JOB_ID > /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/${gene_name}_1pct_CD4_NC_poisson_test_cis_`date +%Y-%m-%d.%H:%M:%S`_qstat.txt
