@@ -1,0 +1,51 @@
+## SGE SETTINGS
+#$ -cwd
+#$ -S /bin/bash
+#$ -q short.q
+#$ -r yes
+#$ -l mem_requested=50G
+#$ -N run_saige
+#$ -o stdout_run_saige_B
+#$ -e stderr_run_saige_B
+#$ -t 1-2510
+
+i=${SGE_TASK_ID};
+
+gene_name=$(sed "${i}q;d" gene_name.txt)
+
+singularity exec --bind /directflow,/share /share/ScratchGeneral/anncuo/saige_qtl/SAIGE-QTL.sif.4 Rscript /usr/local/bin/step1_fitNULLGLMM_qtl.R \
+        --useSparseGRMtoFitNULL=FALSE  \
+        --useGRMtoFitNULL=FALSE \
+        --phenoFile=/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/input/B_IN_pheno_cov.tsv \
+        --phenoCol=$gene_name  \
+        --covarColList=age,sex,pc1,pc2,pc3,pc4,pc5,pc6,pf1,pf2  \
+        --sampleIDColinphenoFile=individual \
+        --traitType=count \
+        --outputPrefix=/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/output/${gene_name}_B_IN_poisson_test  \
+        --skipVarianceRatioEstimation=FALSE  \
+        --isRemoveZerosinPheno=FALSE \
+        --isCovariateOffset=FALSE  \
+        --isCovariateTransform=TRUE  \
+        --skipModelFitting=FALSE  \
+        --tol=0.00001 \
+        --plinkFile=/share/ScratchGeneral/anncuo/OneK1K/plink_files/plink_pruning/chr2_pruned_sc_samples  \
+        --IsOverwriteVarianceRatioFile=TRUE &> /share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/output/${gene_name}_B_IN_poisson_test_`date +%Y-%m-%d.%H:%M:%S`.log
+   
+singularity exec --bind /directflow,/share /share/ScratchGeneral/anncuo/saige_qtl/SAIGE-QTL.sif.4 Rscript /usr/local/bin/step2_tests_qtl.R	 \
+        --bedFile=/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/input/B_IN/${gene_name}_1000000bp.bed  \
+        --bimFile=/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/input/B_IN/${gene_name}_1000000bp.bim  \
+        --famFile=/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/input/B_IN/${gene_name}_1000000bp.fam  \
+        --AlleleOrder=alt-first \
+        --SAIGEOutputFile=/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/output/results/1000000bp/${gene_name}_B_IN.txt  \
+        --chrom=22  \
+        --minMAF=0  \
+        --minMAC=20  \
+        --LOCO=FALSE \
+        --is_fastTest=TRUE      \
+        --GMMATmodelFile=/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/output/${gene_name}_B_IN_poisson_test.rda  \
+        --varianceRatioFile=/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/output/${gene_name}_B_IN_poisson_test.varianceRatio.txt  \
+        --markers_per_chunk=10000  \
+        --pval_cutoff_for_fastTest=0.05  \
+        --SPAcutoff=10000  &>  /share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/output/${gene_name}_B_IN_poisson_single_`date +%Y-%m-%d.%H:%M:%S`.log
+ 
+ qstat -j $JOB_ID > /share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/output/${gene_name}_B_IN_poisson_single_`date +%Y-%m-%d.%H:%M:%S`_qstat.txt
