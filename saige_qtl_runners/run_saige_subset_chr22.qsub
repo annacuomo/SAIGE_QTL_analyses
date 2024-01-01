@@ -42,8 +42,8 @@ ${R_PATH}/Rscript step1_fitNULLGLMM_qtl.R \
 
 
 ${R_PATH}/Rscript step2_tests_qtl.R       \
-        --vcfFile=/directflow/SCCGGroupShare/projects/SeyhanYazar/onek1k/imputed_data/decompressed/filter_vcf_r08/chr${i}.dose.filtered.R2_0.8.vcf.gz  \
-        --vcfFileIndex=/directflow/SCCGGroupShare/projects/SeyhanYazar/onek1k/imputed_data/decompressed/filter_vcf_r08/chr${i}.dose.filtered.R2_0.8.vcf.gz.tbi  \
+        --vcfFile=/directflow/SCCGGroupShare/projects/anncuo/OneK1K/genotypes/filter_vcf_r08/chr${i}.dose.filtered.R2_0.8.vcf.gz  \
+        --vcfFileIndex=/directflow/SCCGGroupShare/projects/anncuo/OneK1K/genotypes/filter_vcf_r08/chr${i}.dose.filtered.R2_0.8.vcf.gz.csi  \
         --SAIGEOutputFile=/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/${gene_name}_1pct_CD4_NC_poisson_test_cis     \
         --chrom=22       \
         --minMAF=0 \
