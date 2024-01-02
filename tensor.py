@@ -74,8 +74,8 @@ cis_df.to_csv(f"{prefix}.sig_cis_qtl_pairs.chr{chr_num}.csv", sep = "\t")
 
 # conditionally independent QTLs
 if any(cis_df.qval < 0.05):
-    print("Identify conditionally independent QTLs")
-    indep_df = cis.map_independent(genotype_df, variant_df, cis_df,
+	print("Identify conditionally independent QTLs")
+	indep_df = cis.map_independent(genotype_df, variant_df, cis_df,
                                phenotype_df, phenotype_pos_df, 
                                covariates_df = covariates_df,
                                maf_threshold = 0.05, nperm = 10000,
