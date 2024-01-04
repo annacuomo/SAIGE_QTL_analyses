@@ -42,7 +42,7 @@ loc$gene_name = gsub("-","\\.",loc$gene_name)
 if (nrow(loc)>length(unique(loc$gene_name))){
     loc = loc[-which(duplicated(loc$gene_name)),]
 }
-common_genes = unique(loc$gene_name[loc$gene_name %in% rownames(mx)]
+common_genes = unique(loc$gene_name[loc$gene_name %in% rownames(mx)])
 
 # select relevant columns and adjust order
 loc = loc[,c("seqid","start","end","gene_name")]
