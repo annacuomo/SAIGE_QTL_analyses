@@ -10,9 +10,9 @@ chr_num = 1
 
 # define paths to data
 plink_prefix_path = f"/directflow/SCCGGroupShare/projects/anncuo/OneK1K/plink_files/plink_chr{chr_num}"
-expression_bed = f"/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/input/Jan24/tensorqtl/CD4_NC_1pct_subset/chr{chr_num}.bed.gz"
-covariates_file = f"/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/input/Jan24/tensorqtl/CD4_NC_1pct_subset/chr{chr_num}_covs.txt"
-path = f"/directflow/SCCGGroupShare/projects/anncuo/OneK1K/output/tensorqtl/CD4_NC_1pct_subset"
+expression_bed = f"/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/input/Jan24/tensorqtl/CD4_NC_5ct_subset/chr{chr_num}.bed.gz"
+covariates_file = f"/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/input/Jan24/tensorqtl/CD4_NC_5pct_subset/chr{chr_num}_covs.txt"
+path = f"/directflow/SCCGGroupShare/projects/anncuo/OneK1K/output/tensorqtl/CD4_NC_5pct_subset"
 prefix = path
 if os.path.exists(path) == False:
     os.makedirs(path)
