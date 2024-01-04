@@ -5,7 +5,8 @@ import tensorqtl
 from tensorqtl import genotypeio, cis, trans
 
 import os
-chr_num = 22
+chr_num = 1
+# chr_num = 22
 
 # define paths to data
 plink_prefix_path = f"/directflow/SCCGGroupShare/projects/anncuo/OneK1K/plink_files/plink_chr{chr_num}"
