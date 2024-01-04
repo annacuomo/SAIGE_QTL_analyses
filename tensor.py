@@ -5,14 +5,20 @@ import tensorqtl
 from tensorqtl import genotypeio, cis, trans
 
 import os
-chr_num = 1
-# chr_num = 22
+import sys
+from sys import argv
+
+inputArgs = sys.argv[1:]
+
+# Convert the argument to integer
+pct = inputArgs[0]
+chr_num = int(inputArgs[1])
 
 # define paths to data
 plink_prefix_path = f"/directflow/SCCGGroupShare/projects/anncuo/OneK1K/plink_files/plink_chr{chr_num}"
-expression_bed = f"/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/input/Jan24/tensorqtl/CD4_NC_5ct_subset/chr{chr_num}.bed.gz"
-covariates_file = f"/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/input/Jan24/tensorqtl/CD4_NC_5pct_subset/chr{chr_num}_covs.txt"
-path = f"/directflow/SCCGGroupShare/projects/anncuo/OneK1K/output/tensorqtl/CD4_NC_5pct_subset"
+expression_bed = f"/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/input/Jan24/tensorqtl/CD4_NC_{pct}ct_subset/chr{chr_num}.bed.gz"
+covariates_file = f"/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/input/Jan24/tensorqtl/CD4_NC_{pct}pct_subset/chr{chr_num}_covs.txt"
+path = f"/directflow/SCCGGroupShare/projects/anncuo/OneK1K/output/tensorqtl/CD4_NC_{pct}pct_subset"
 prefix = path
 if os.path.exists(path) == False:
     os.makedirs(path)
