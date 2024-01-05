@@ -8,7 +8,7 @@
 #$ -N run_saige
 #$ -o stdout_run_saige_CD4_NC_sub_1
 #$ -e stderr_run_saige_CD4_NC_sub_1
-#$ -t 601-2513
+#$ -t 1-2513
 
 # #$ -m ae
 # #$ -M a.cuomo@garvan.org.au
@@ -23,24 +23,24 @@ R_PATH=/share/ScratchGeneral/anncuo/jupyter/conda_notebooks/envs/RSAIGE/bin/
 
 cd /share/ScratchGeneral/anncuo/software/qtl/extdata
 
-${R_PATH}/Rscript step1_fitNULLGLMM_qtl.R \
-        --useSparseGRMtoFitNULL=FALSE  \
-        --useGRMtoFitNULL=FALSE \
-        --phenoFile=/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/input/Sept23/SCT/CD4_NC_sc_pheno_cov_1pct_subset.tsv	\
-        --phenoCol=$gene_name       \
-        --covarColList=age,sex,pc1,pc2,pc3,pc4,pc5,pc6,pf1,pf2    \
-        --sampleCovarColList=age,sex,pc1,pc2,pc3,pc4,pc5,pc6      \
-        --sampleIDColinphenoFile=individual \
-        --traitType=count \
-        --outputPrefix=/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/subset_1pct/${gene_name}_1pct_CD4_NC_poisson_test \
-        --skipVarianceRatioEstimation=FALSE  \
-        --isRemoveZerosinPheno=FALSE \
-        --isCovariateOffset=FALSE  \
-        --isCovariateTransform=TRUE  \
-        --skipModelFitting=FALSE  \
-        --tol=0.00001   \
-        --plinkFile=/directflow/SCCGGroupShare/projects/anncuo/OneK1K/plink_files/plink_pruning/chr2_pruned_sc_samples       \
-        --IsOverwriteVarianceRatioFile=TRUE &> /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/subset_1pct/${gene_name}_1pct_CD4_NC_poisson_test_`date +%Y-%m-%d.%H:%M:%S`.log
+#${R_PATH}/Rscript step1_fitNULLGLMM_qtl.R \
+#        --useSparseGRMtoFitNULL=FALSE  \
+#        --useGRMtoFitNULL=FALSE \
+#        --phenoFile=/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/input/Sept23/SCT/CD4_NC_sc_pheno_cov_1pct_subset.tsv	\
+#        --phenoCol=$gene_name       \
+#        --covarColList=age,sex,pc1,pc2,pc3,pc4,pc5,pc6,pf1,pf2    \
+#        --sampleCovarColList=age,sex,pc1,pc2,pc3,pc4,pc5,pc6      \
+#        --sampleIDColinphenoFile=individual \
+#        --traitType=count \
+#        --outputPrefix=/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/subset_1pct/${gene_name}_1pct_CD4_NC_poisson_test \
+#        --skipVarianceRatioEstimation=FALSE  \
+#        --isRemoveZerosinPheno=FALSE \
+#        --isCovariateOffset=FALSE  \
+#        --isCovariateTransform=TRUE  \
+#        --skipModelFitting=FALSE  \
+#        --tol=0.00001   \
+#        --plinkFile=/directflow/SCCGGroupShare/projects/anncuo/OneK1K/plink_files/plink_pruning/chr2_pruned_sc_samples       \
+#        --IsOverwriteVarianceRatioFile=TRUE &> /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/subset_1pct/${gene_name}_1pct_CD4_NC_poisson_test_`date +%Y-%m-%d.%H:%M:%S`.log
 
 
 ${R_PATH}/Rscript step2_tests_qtl.R       \
