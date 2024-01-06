@@ -23,7 +23,7 @@ R_PATH=/share/ScratchGeneral/anncuo/jupyter/conda_notebooks/envs/RSAIGE/bin/
 
 cd /share/ScratchGeneral/anncuo/software/qtl/extdata
 
-#${R_PATH}/Rscript step1_fitNULLGLMM_qtl.R \
+# ${R_PATH}/Rscript step1_fitNULLGLMM_qtl.R \
 #        --useSparseGRMtoFitNULL=FALSE  \
 #        --useGRMtoFitNULL=FALSE \
 #        --phenoFile=/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/input/Sept23/SCT/CD4_NC_sc_pheno_cov_10pct_subset.tsv	\
