@@ -57,5 +57,10 @@ ${R_PATH}/Rscript step2_tests_qtl.R       \
         --rangestoIncludeFile=${regionFile}     \
         --markers_per_chunk=10000 &> /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/subset_1pct/${gene_name}_1pct_CD4_NC_poisson_test_cis_`date +%Y-%m-%d.%H:%M:%S`.log
 
+${R_PATH}/Rscript step3_gene_pvalue_qtl.R \
+        --assocFile=/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/subset_1pct/${gene_name}_1pct_CD4_NC_poisson_test_cis        \
+        --geneName=$gene_name      \
+        --genePval_outputFile=/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/subset_1pct/${gene_name}_1pct_CD4_NC_poisson_test_cis_genePval
+
 
  qstat -j $JOB_ID > /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/subset_1pct/${gene_name}_1pct_CD4_NC_poisson_test_cis_`date +%Y-%m-%d.%H:%M:%S`_qstat.txt
