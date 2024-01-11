@@ -46,16 +46,16 @@ ${R_PATH}/Rscript step1_fitNULLGLMM_qtl.R \
 ${R_PATH}/Rscript step2_tests_qtl.R       \
         --vcfFile=/directflow/SCCGGroupShare/projects/anncuo/OneK1K/genotypes/filter_vcf_r08/chr${chrom}.dose.filtered.R2_0.8.vcf.gz  \
         --vcfFileIndex=/directflow/SCCGGroupShare/projects/anncuo/OneK1K/genotypes/filter_vcf_r08/chr${chrom}.dose.filtered.R2_0.8.vcf.gz.csi  \
-        --SAIGEOutputFile=/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/subset_10pct/${gene_name}_10pct_CD4_NC_poisson_test_cis     \
+        --SAIGEOutputFile=/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/subset_100pct/${gene_name}_100pct_CD4_NC_poisson_test_cis     \
         --chrom=$chrom       \
         --minMAF=0 \
         --minMAC=20 \
         --LOCO=FALSE    \
-        --GMMATmodelFile=/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/subset_10pct/${gene_name}_10pct_CD4_NC_poisson_test.rda     \
+        --GMMATmodelFile=/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/subset_100pct/${gene_name}_100pct_CD4_NC_poisson_test.rda     \
         --SPAcutoff=2 \
-        --varianceRatioFile=/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/subset_10pct/${gene_name}_10pct_CD4_NC_poisson_test.varianceRatio.txt    \
+        --varianceRatioFile=/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/subset_100pct/${gene_name}_100pct_CD4_NC_poisson_test.varianceRatio.txt    \
         --rangestoIncludeFile=${regionFile}     \
-        --markers_per_chunk=10000 &> /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/subset_10pct/${gene_name}_10pct_CD4_NC_poisson_test_cis_`date +%Y-%m-%d.%H:%M:%S`.log
+        --markers_per_chunk=10000 &> /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/subset_100pct/${gene_name}_100pct_CD4_NC_poisson_test_cis_`date +%Y-%m-%d.%H:%M:%S`.log
 
 
- qstat -j $JOB_ID > /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/subset_10pct/${gene_name}_10pct_CD4_NC_poisson_test_cis_`date +%Y-%m-%d.%H:%M:%S`_qstat.txt
+ qstat -j $JOB_ID > /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/subset_100pct/${gene_name}_100pct_CD4_NC_poisson_test_cis_`date +%Y-%m-%d.%H:%M:%S`_qstat.txt
