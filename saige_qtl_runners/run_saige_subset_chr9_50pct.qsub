@@ -8,15 +8,15 @@
 #$ -N run_saige
 #$ -o stdout_run_saige_CD4_NC_sub_50
 #$ -e stderr_run_saige_CD4_NC_sub_50
-#$ -t 1-950
+#$ -t 1-954
 
 # #$ -m ae
 # #$ -M a.cuomo@garvan.org.au
 
 i=${SGE_TASK_ID};
-chrom=8
+chrom=9
 
-gene_name=$(sed "${i}q;d" /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/input/power_analysis_subsets/gene_lists/chrom8_genes.txt)
+gene_name=$(sed "${i}q;d" /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/input/power_analysis_subsets/gene_lists/chrom9_genes.txt)
 regionFile="/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/input/power_analysis_subsets/cis_region_files/${gene_name}_cis_region_1Mb.txt"
 
 R_PATH=/share/ScratchGeneral/anncuo/jupyter/conda_notebooks/envs/RSAIGE/bin/
