@@ -6,8 +6,8 @@
 #$ -r yes
 #$ -l mem_requested=50G
 #$ -N run_saige
-#$ -o stdout_run_saige_CD4_NC_sub_100_pt1
-#$ -e stderr_run_saige_CD4_NC_sub_100_pt1
+#$ -o stdout_run_saige_CD4_NC_sub_100_pt2
+#$ -e stderr_run_saige_CD4_NC_sub_100_pt2
 #$ -t 1-1344
 
 # #$ -m ae
@@ -26,7 +26,7 @@ cd /share/ScratchGeneral/anncuo/software/qtl/extdata
 ${R_PATH}/Rscript step1_fitNULLGLMM_qtl.R \
         --useSparseGRMtoFitNULL=FALSE  \
         --useGRMtoFitNULL=FALSE \
-        --phenoFile=/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/input/Sept23/SCT/CD4_NC_sc_pheno_cov_part1.tsv	\
+        --phenoFile=/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/input/Sept23/SCT/CD4_NC_sc_pheno_cov_part2.tsv	\
         --phenoCol=$gene_name       \
         --covarColList=age,sex,pc1,pc2,pc3,pc4,pc5,pc6,pf1,pf2    \
         --sampleCovarColList=age,sex,pc1,pc2,pc3,pc4,pc5,pc6      \
