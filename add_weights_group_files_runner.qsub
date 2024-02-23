@@ -1,0 +1,20 @@
+#!/bin/bash
+#$ -S /bin/bash
+#$ -cwd
+#$ -V
+#$ -r yes
+#$ -l mem_requested=20G
+#$ -l tmp_requested=10G
+#$ -N add_weights_to_group_files
+#$ -q short.q
+#$ -o /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/add_weights.err
+#$ -e /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/add_weights.log
+#$ -t 1-51825
+#$ -m ae
+#$ -M a.cuomo@garvan.org.au
+
+R_PATH="/share/ScratchGeneral/anncuo/jupyter/conda_notebooks/envs/r_notebook/bin"
+RSCRIPT="/share/ScratchGeneral/anncuo/github_repos//SAIGE_QTL_analyses/add_weights_group_files.R"
+
+# Do the main job
+${R_PATH}/Rscript ${RSCRIPT} ${SGE_TASK_ID}
