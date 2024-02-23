@@ -29,7 +29,7 @@ if (file.exists(out_file)){
 }
 
 # open file
-df = as.data.frame(fread(paste0(mydir,gf), header=F))
+df = as.data.frame(fread(paste0(gf_dir,gf), header=F))
 
 # add one more line with weights
 # first col is always the gene name
