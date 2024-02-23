@@ -22,7 +22,7 @@ group_files = list.files(gf_dir)
 gf = group_files[i]
 
 # new output directory (groups with weights)
-out_dir = paste0(mydir,"with_dTSS_weights/")
+out_dir = paste0(gf_dir,"with_dTSS_weights/")
 out_file = paste0(out_dir, gsub(".grp","_dTSS_weights.grp",gf))
 if (file.exists(out_file)){
   quit(save = "no", status = 1, runLast = FALSE)
@@ -42,6 +42,9 @@ gene = df$V1[1]
     quit(save = "no", status = 1, runLast = FALSE)
 }
 TSS = gene_df[gene_df$gene_name == gene,"start"]
+if (gene_df[gene_df$gene_name == gene,]$strand == "-"){
+    TSS = gene_df[gene_df$gene_name == gene,"end"]
+}
 for (i in c(3:ncol(df))){
     snp = df[1,i]
     pos = as.numeric(unlist(strsplit(snp,split=":"))[2])
