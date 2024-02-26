@@ -12,7 +12,7 @@
 #$ -t 1-51825
 
 R_PATH="/share/ScratchGeneral/anncuo/jupyter/conda_notebooks/envs/r_notebook/bin"
-RSCRIPT="/share/ScratchGeneral/anncuo/github_repos//SAIGE_QTL_analyses/add_weights_group_files.R"
+RSCRIPT="/share/ScratchGeneral/anncuo/github_repos/SAIGE_QTL_analyses/add_weights_group_files.R"
 
 # Do the main job
 ${R_PATH}/Rscript ${RSCRIPT} ${SGE_TASK_ID}
