@@ -37,13 +37,13 @@ df[3,1] = df[1,1]
 # second is description (weight def)
 df[3,2] = "weight:dTSS"
 gene = df$V1[1]
-    if (nrow(gene_df[gene_df$gene_name == gene,])==0){
+if (nrow(gene_df[gene_df$gene_name == gsub("_","-",gene),])==0){
     print(gene)
     quit(save = "no", status = 1, runLast = FALSE)
 }
-TSS = gene_df[gene_df$gene_name == gene,"start"]
-if (gene_df[gene_df$gene_name == gene,]$strand == "-"){
-    TSS = gene_df[gene_df$gene_name == gene,"end"]
+TSS = gene_df[gene_df$gene_name == gsub("_","-",gene),"start"]
+if (gene_df[gene_df$gene_name == gsub("_","-",gene),]$strand == "-"){
+    TSS = gene_df[gene_df$gene_name == gsub("_","-",gene),"end"]
 }
 for (i in c(3:ncol(df))){
     snp = df[1,i]
