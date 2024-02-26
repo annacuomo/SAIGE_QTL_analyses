@@ -9,7 +9,7 @@
 #$ -q short.q
 #$ -e /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/add_weights.err
 #$ -o /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/add_weights.log
-#$ -t 1-51825
+#$ -t 1-1
 
 R_PATH="/share/ScratchGeneral/anncuo/jupyter/conda_notebooks/envs/r_notebook/bin"
 RSCRIPT="/share/ScratchGeneral/anncuo/github_repos/SAIGE_QTL_analyses/add_weights_group_files.R"
