@@ -20,10 +20,12 @@ group_files = list.files(gf_dir)
 
 # group file considered here
 gf = group_files[i]
+print(gf)
 
 # new output directory (groups with weights)
 out_dir = paste0(gf_dir,"with_dTSS_weights/")
 out_file = paste0(out_dir, gsub(".grp","_dTSS_weights.grp",gf))
+print(out_file
 if (file.exists(out_file)){
   quit(save = "no", status = 1, runLast = FALSE)
 }
