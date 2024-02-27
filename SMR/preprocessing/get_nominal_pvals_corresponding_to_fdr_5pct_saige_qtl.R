@@ -1,4 +1,11 @@
+library(data.table)
+
 saige_dir = "/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/from_wei/Feb24/"
+results_dir = paste0(saige_dir,"cis_single_qvallt0.05/")
+
+myfile = paste0(saige_dir, "allcelltype_CauchyPval_cis_MAFge0.05.txt.qvalue.lt0.05.txt.05")
+df = as.data.frame(fread(myfile))
+colnames(df) = c("celltype","gene","cauchy_pval","qval")
 
 # unique cell types
 celltypes = unique(df$celltype)
