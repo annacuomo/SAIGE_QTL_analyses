@@ -1,8 +1,10 @@
 library(data.table)
 
+# results folder
 saige_dir = "/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/from_wei/Feb24/"
 results_dir = paste0(saige_dir,"cis_single_qvallt0.05/")
 
+# gene-level Cauchy p-values for every cell type - gene combination
 myfile = paste0(saige_dir, "allcelltype_CauchyPval_cis_MAFge0.05.txt.qvalue.lt0.05.txt.05")
 df = as.data.frame(fread(myfile))
 colnames(df) = c("celltype","gene","cauchy_pval","qval")
@@ -11,6 +13,10 @@ colnames(df) = c("celltype","gene","cauchy_pval","qval")
 celltypes = unique(df$celltype)
 
 # loop over cell types
+# select p-value corresponding to FDR=5%
+# i.e. pick gene with max FDR while still under 5%
+# consider min p-value for that gene
+# if there are multiple genes, take max
 for (celltype in celltypes){
     df1 = as.data.frame(df[df$celltype == celltype,])
     genes = df1[df1$qval==max(df1[df1$qval<0.05,]$qval),]$gene
