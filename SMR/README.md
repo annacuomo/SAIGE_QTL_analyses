@@ -22,14 +22,14 @@ Preprocessing:
 
 SMR:
 
-* eQTL p-value threshold: nominal p-value < 5E-8
+* eQTL p-value threshold: nominal p-value corresponding to FDR<5%
 * no GWAS p-value threshold
 
 [Run SMR using SAIGE-eQTL summary and further QCed GWAS summary](./SMR_using_SAIGE_QTL/main_ibd_smr.qsub.sh )
 
 ### Matrix eQTL
 
-* eQTL p-value threshold: nominal p-value < 5E-8
+* eQTL p-value threshold: nominal p-value corresponding to FDR<5%
 * no GWAS p-value threshold
 
 [Re-run SMR using Matrix eQTL and further QCed GWAS summary](./SMR_using_MatrixeQTL/main_ibd_smr.qsub.sh )
