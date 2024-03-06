@@ -1,7 +1,7 @@
 # Runners for SAIGE-QTL on OneK1K data
 
 For the SAIGE-QTL method paper, we will evaluate performance on simulated data as well as real data.
-For the latter, we will use the OneK1K dataset, as the current largest population-scale single-cell RNA-seq dataset.
+For the latter, we will use the [OneK1K](https://www.science.org/doi/full/10.1126/science.abf3041) dataset, as the current largest population-scale single-cell RNA-seq dataset.
 
 ## remember to add .csi index to VCF
 
