@@ -6,7 +6,7 @@ In order to compare SAIGE-QTL to Matrix eQTL (the method used in the [original S
 
 Like in the original paper, we want to test for whether our identified cell type-specific eQTLs are mediating SNP-disease associations with 7 autoimmune conditions, using GWAS summary statistics for: systemic lupus erythematosus (SLE), rheumatoid arthritis (RA), Crohn’s disease (CD), inflammatory bowel disease (IBD), multiple sclerosis (MS), ankylosing spondylitis (AS), and Type 1 diabetes mellitus (T1D), see Table 1 from Yazar et al.
 
-Here, we rerun SMR using summary stats from the same 7 GWAS results, for both Matrix eQTL and SAIGE-QTL, for comparison.
+Here, we rerun SMR using summary stats from a subset of 3 GWAS traits (IBD, RA, SLE), for both Matrix eQTL and SAIGE-QTL, for comparison.
 
 ## Detailed workflow
 
