@@ -6,5 +6,5 @@ The notebooks in this folder contain code to plot results of running SAIGE-QTL t
 * [CV conditional rounds](Conditional_results.ipynb): 
 * [ITGA4 forest_plot](Forest_Plot.ipynb): Forest plot showing eQTL results (using SAIGE-QTL) for ITGA4 across cell types.
 * [Scatter n eGenes vs n cells](Number_of_eGenes_by_number_of_cells.ipynb):
-* [SAIGE vs Tensor_eGenes Venn](Venn_diagram.ipynb):
-* [](pvals_and_betas_concordance_plots.ipynb) 
+* [SAIGE vs Tensor eGenes Venn](Venn_diagram.ipynb):
+* [SAIGE vs Matrix pvs and betas scatter](pvals_and_betas_concordance_plots.ipynb): 
