@@ -1,6 +1,6 @@
 # Summary of notebooks here
 
-The notebooks in this folder contain code to plot results of running SAIGE-QTL to map single-cell eQTLs across all 14 cell types from OneK1K, and comparison with performing the same task using [TensorQTL](https://github.com/broadinstitute/tensorqtl/).
+The notebooks in this folder contain code to plot results of running our [SAIGE-QTL](https://github.com/weizhou0/qtl) to map single-cell eQTLs across all 14 cell types from OneK1K, and comparison with performing the same task using [TensorQTL](https://github.com/broadinstitute/tensorqtl/).
 
 * [ChiSquare SAIGE-QTL vs TensorQTL](ChiSquare_comparison_plot.ipynb): Comparison of Chi squared values between SAIGE-QTL and TensorQTL for each cell type.
 * [CV conditional rounds](Conditional_results.ipynb): Number of eQTLs identified by each of 5 rounds of conditional analysis for each cell type.
