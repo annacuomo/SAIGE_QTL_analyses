@@ -1,7 +1,7 @@
 library(data.table)
 
 # pheno cov filenames (single-cell profiles by cell type, after SCT normalisation)
-mydir = "/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/input/Sept23/SCT/"
+mydir = "/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/input/Sept23/SCT/"
 
 # because it is such an abundant cell type, the CD4_NC file was split in two (with about half the genes in each)
 # part1
@@ -99,13 +99,15 @@ length(barcodes_1)*100
 # * extract single-cell expression 
 # * get correct columns and save files
 
+output_dir = "/directflow/SCCGGroupShare/projects/anncuo/OneK1K_from_ScratchGeneral/OneK1K/saige_eqtl/input/Sept23/SCT/"
+
 # 50%
 df_pt1_50 = as.data.frame(df_pt1[df_pt1$barcode %in% barcodes_50,])
 df_pt2_50 = as.data.frame(df_pt2[df_pt2$barcode %in% barcodes_50,])
 df_pt1_50 = df_pt1_50[,!(colnames(df_pt1_50) %in% c('sex','pc1','pc2','pc3','pc4','pc5','pc6','age','pf1','pf2'))]
 df_pt2_50 = df_pt2_50[,!(colnames(df_pt2_50) %in% c('individual','barcode'))]
 df_50 = cbind(df_pt1_50, df_pt2_50)
-pheno_cov_filename = "/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/input/Sept23/SCT/CD4_NC_sc_pheno_cov_50pct_subset.tsv"
+pheno_cov_filename = paste0(output_dir,"CD4_NC_sc_pheno_cov_50pct_subset.tsv")
 write.table(df_50, pheno_cov_filename, sep="\t", row.names = F, col.names = T, quote = F)
 
 # 20%
@@ -114,7 +116,7 @@ df_pt2_20 = as.data.frame(df_pt2[df_pt2$barcode %in% barcodes_20,])
 df_pt1_20 = df_pt1_20[,!(colnames(df_pt1_20) %in% c('sex','pc1','pc2','pc3','pc4','pc5','pc6','age','pf1','pf2'))]
 df_pt2_20 = df_pt2_20[,!(colnames(df_pt2_20) %in% c('individual','barcode'))]
 df_20 = cbind(df_pt1_20, df_pt2_20)
-pheno_cov_filename = "/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/input/Sept23/SCT/CD4_NC_sc_pheno_cov_20pct_subset.tsv"
+pheno_cov_filename = paste0(output_dir,"CD4_NC_sc_pheno_cov_20pct_subset.tsv")
 write.table(df_20, pheno_cov_filename, sep="\t", row.names = F, col.names = T, quote = F)
 
 # 10%
@@ -123,7 +125,7 @@ df_pt2_10 = as.data.frame(df_pt2[df_pt2$barcode %in% barcodes_10,])
 df_pt1_10 = df_pt1_10[,!(colnames(df_pt1_10) %in% c('sex','pc1','pc2','pc3','pc4','pc5','pc6','age','pf1','pf2'))]
 df_pt2_10 = df_pt2_10[,!(colnames(df_pt2_10) %in% c('individual','barcode'))]
 df_10 = cbind(df_pt1_10, df_pt2_10)
-pheno_cov_filename = "/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/input/Sept23/SCT/CD4_NC_sc_pheno_cov_10pct_subset.tsv"
+pheno_cov_filename = paste0(output_dir,"CD4_NC_sc_pheno_cov_10pct_subset.tsv")
 write.table(df_10, pheno_cov_filename, sep="\t", row.names = F, col.names = T, quote = F)
 
 # 5%
@@ -132,7 +134,7 @@ df_pt2_5 = as.data.frame(df_pt2[df_pt2$barcode %in% barcodes_5,])
 df_pt1_5 = df_pt1_5[,!(colnames(df_pt1_5) %in% c('sex','pc1','pc2','pc3','pc4','pc5','pc6','age','pf1','pf2'))]
 df_pt2_5 = df_pt2_5[,!(colnames(df_pt2_5) %in% c('individual','barcode'))]
 df_5 = cbind(df_pt1_5, df_pt2_5)
-pheno_cov_filename = "/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/input/Sept23/SCT/CD4_NC_sc_pheno_cov_5pct_subset.tsv"
+pheno_cov_filename = paste0(output_dir,"CD4_NC_sc_pheno_cov_5pct_subset.tsv")
 write.table(df_5, pheno_cov_filename, sep="\t", row.names = F, col.names = T, quote = F)
 
 # 1%
@@ -141,5 +143,5 @@ df_pt2_1 = as.data.frame(df_pt2[df_pt2$barcode %in% barcodes_1,])
 df_pt1_1 = df_pt1_1[,!(colnames(df_pt1_1) %in% c('sex','pc1','pc2','pc3','pc4','pc5','pc6','age','pf1','pf2'))]
 df_pt2_1 = df_pt2_1[,!(colnames(df_pt2_1) %in% c('individual','barcode'))]
 df_1 = cbind(df_pt1_1, df_pt2_1)
-pheno_cov_filename = "/share/ScratchGeneral/anncuo/OneK1K/saige_eqtl/input/Sept23/SCT/CD4_NC_sc_pheno_cov_1pct_subset.tsv"
+pheno_cov_filename = paste0(output_dir,"CD4_NC_sc_pheno_cov_1pct_subset.tsv")
 write.table(df_1, pheno_cov_filename, sep="\t", row.names = F, col.names = T, quote = F)
