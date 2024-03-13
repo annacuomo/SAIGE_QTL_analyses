@@ -1,13 +1,10 @@
-## Code to reproduce our paper's figures
+# Code to reproduce our paper's figures
 
 Preprint coming soon!
 
-### Still to add
+## Summary of figures
 
-* Venn diagram
-* Compare Chi squared
-* Forest plot
-* number of genes vs number of cells
-* rare variant barplots
-* trans eQTL heatmaps
-* SMR venn diagrams
+* SAIGE-QTL common variant eQTL results and comparison with TensorQTL
+* Mendelian Randomisation analysis
+* Trans eQTL analysis
+* Rare variant analysis
