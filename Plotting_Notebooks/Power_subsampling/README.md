@@ -3,4 +3,4 @@
 In order to evaluate how the power to detect single-cell eQTLs is affected by the number of cells available, we considered the largest of the cell types (CD4 NC), and downsampled to different percentages, before re-running SAIGE-QTL.
 We also built pseudobulk counts and ran TensorQTL for comparison on the same subsets.
 
-* [preprocessing/subset_CD4_NC_cells.R](preprocessing/subset_CD4_NC_cells.R)
+* [subset_CD4_NC_cells.R](../../preprocessing/subset_CD4_NC_cells.R): script to subset CD4 NC single-cell expression to 1, 5, 10, 20 and 50% of the cells (keeping the donor-to-cell ratio constant)
