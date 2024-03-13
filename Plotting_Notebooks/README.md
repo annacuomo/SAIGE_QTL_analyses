@@ -4,7 +4,7 @@ Preprint coming soon!
 
 ## Summary of figures
 
-* SAIGE-QTL common variant eQTL results and comparison with TensorQTL
-* Mendelian Randomisation analysis
+* [saige_qtl](saige_qtl) SAIGE-QTL common variant eQTL results and comparison with TensorQTL
+* [SMR](SMR) Mendelian Randomisation analysis
 * Trans eQTL analysis
 * Rare variant analysis
