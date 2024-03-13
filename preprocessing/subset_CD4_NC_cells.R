@@ -11,14 +11,14 @@ df_pt1 = fread(file)
 file = paste0(mydir, "CD4_NC_sc_pheno_cov_part2.tsv")
 df_pt2 = fread(file)
 
-# extract cell to individual map from one of the two (the rows should be identical)
+# extract cell-to-individual map from one of the two files (the rows are identical, and so are these two columns)
 df_ind_cells = as.data.frame(df_pt1[,c("individual","barcode")])
 
-# for each individual, record the total number of cells
+# for each individual, record the total number of cells (`n_cells_100`)
 n_cells_df = data.frame(table(df0$individual))
 colnames(n_cells_df) = c("individual","n_cells_100")
 
-# for each individual, get the rounded up number of cells 
+# for each individual, get the rounded up number of cells, 
 # when subsetting to 1, 5, 10, 20 and 50% 
 pct = c(50,20,10,5,1)
 for (p in pct){
@@ -95,8 +95,9 @@ length(barcodes_5)*20
 barcodes_1 = df_ind_cells_1$barcode
 length(barcodes_1)*100
 
-# for each of of the barcode lists, extract single-cell expression 
-# get correct columns and save files
+# for each of of the barcode lists just generated, 
+# * extract single-cell expression 
+# * get correct columns and save files
 
 # 50%
 df_pt1_50 = as.data.frame(df_pt1[df_pt1$barcode %in% barcodes_50,])
