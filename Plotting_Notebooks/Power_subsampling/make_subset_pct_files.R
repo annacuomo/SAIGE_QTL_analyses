@@ -85,3 +85,129 @@ get_CCT_pvalue = function(pvalue, weights=NULL){
    }
    return(cctpval)
 }
+
+saige_dir = "/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/output/subsets/"
+tensor_dir = "/directflow/SCCGGroupShare/projects/anncuo/OneK1K/output/tensorqtl/"
+
+sct_dir = "/directflow/SCCGGroupShare/projects/anncuo/OneK1K_from_ScratchGeneral/OneK1K/saige_eqtl/input/Sept23/SCT/"
+
+subsets_analysis_dir = "/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/input/power_analysis_subsets/"
+gene_list_dir = paste0(subsets_analysis_dir,"gene_lists/")
+
+out_dir = paste0(subsets_analysis_dir,"gene_level_results_atleast_1pct_expressed/")
+
+# 1, 5, 10, 20, 50%
+for (chrom in c(1:22)){
+    genes_file = paste0(gene_list_dir,"chrom",chrom,"_genes.txt")
+    genes_df = fread(genes_file, header=F)
+    genes = genes_df$V1
+    for (pct in c(1,5,10,20,50)){
+        pheno_cov_filename_sc = paste0(sct_dir,"CD4_NC_sc_pheno_cov_",pct,"pct_subset.tsv")
+        sc_df = fread(pheno_cov_filename_sc)
+        sc_df = as.data.frame(sc_df)
+        sc_mat = sc_df[,colnames(sc_df) %in% genes]
+        n_cells = data.frame(gene = colnames(sc_mat), n_cell = colSums(sc_mat))
+        n_cells$pct_expr = n_cells$n_cell / nrow(sc_mat)*100
+        n_cells_1pct = n_cells[n_cells$pct_expr >= 1,]
+        retained_genes = rownames(n_cells_1pct)
+        tensor_file = paste0(tensor_dir,"CD4_NC_",pct,"pct_subset/CD4_NC_",pct,"pct_subset.cis_qtl_pairs.chr",chrom,".csv")
+        tensor_df_all = as.data.frame(fread(tensor_file))
+        df_gene = data.frame(gene = retained_genes)
+        for (gene in retained_genes){
+            # SAIGE-QTL
+            saige_file = paste0(saige_dir,"subset_",pct,"pct/",gene,"_",pct,"pct_CD4_NC_poisson_test_cis")
+            if (file.exists(saige_file) == FALSE){next}
+            saige_df = as.data.frame(fread(saige_file))
+            if (nrow(saige_df) == 0){next}
+            saige_snps = unique(saige_df$MarkerID)
+            # TensorQTL
+            tensor_df = tensor_df_all[tensor_df_all$phenotype_id == gene,]
+            tensor_snps = unique(tensor_df$variant_id)
+            # get variants tested in both
+            common_snps = saige_snps[saige_snps %in% tensor_snps]
+            # get CCT values
+            saige_acat_all = get_CCT_pvalue(saige_df$p.value)
+            saige_acat_common = get_CCT_pvalue(saige_df[saige_df$MarkerID %in% common_snps,"p.value"])
+            tensor_acat_all = get_CCT_pvalue(tensor_df$pval_nominal)
+            tensor_acat_common = get_CCT_pvalue(tensor_df[tensor_df$variant_id %in% common_snps,"pval_nominal"])
+            # add to data frame
+            df_gene[df_gene$gene == gene,"saige_acat_all"] = saige_acat_all
+            df_gene[df_gene$gene == gene,"saige_acat_common"] = saige_acat_common
+            df_gene[df_gene$gene == gene,"tensor_acat_all"] = tensor_acat_all
+            df_gene[df_gene$gene == gene,"tensor_acat_common"] = tensor_acat_common
+      }
+      df_gene = df_gene[rowSums(is.na(df_gene)) == 0, ] 
+      df_gene$qv_saige_common = qvalue(df_gene$saige_acat_common, pi0=1)$qvalues
+      df_gene$qv_tensor_common = qvalue(df_gene$tensor_acat_common, pi0=1)$qvalues
+      df_gene$qv_saige_all = qvalue(df_gene$saige_acat_all, pi0=1)$qvalues
+      df_gene$qv_tensor_all = qvalue(df_gene$tensor_acat_all, pi0=1)$qvalues
+      out_file = paste0(out_dir, "chr",chrom,"_",pct,"pct.csv")
+      fwrite(df_gene, out_file)
+   }
+}
+
+# 100%
+pct=100
+for (chrom in c(1:22)){
+    genes_file = paste0(gene_list_dir,"chrom",chrom,"_genes.txt")
+    genes_df = fread(genes_file, header=F)
+    genes = genes_df$V1
+    # part1
+    pheno_cov_filename_sc1 = paste0(sct_dir,"CD4_NC_sc_pheno_cov_part1.tsv")
+    sc_df1 = fread(pheno_cov_filename_sc1)
+    sc_df1 = as.data.frame(sc_df1)
+    sc_mat1 = sc_df1[,colnames(sc_df1) %in% genes]
+    n_cells1 = data.frame(gene = colnames(sc_mat1),
+                        n_cell = colSums(sc_mat1))
+    n_cells1$pct_expr = n_cells1$n_cell / nrow(sc_mat1)*100
+    n_cells_1pct1 = n_cells1[n_cells1$pct_expr >= 1,]
+    retained_genes1 = rownames(n_cells_1pct1)
+    # part2
+    pheno_cov_filename_sc2 = paste0(sct_dir,"CD4_NC_sc_pheno_cov_part2.tsv")
+    sc_df2 = fread(pheno_cov_filename_sc2)
+    sc_df2 = as.data.frame(sc_df2)
+    sc_mat2 = sc_df2[,colnames(sc_df2) %in% genes]
+    n_cells2 = data.frame(gene = colnames(sc_mat2),
+                        n_cell = colSums(sc_mat2))
+    n_cells2$pct_expr = n_cells2$n_cell / nrow(sc_mat2)*100
+    n_cells_1pct2 = n_cells2[n_cells2$pct_expr >= 1,]
+    retained_genes2 = rownames(n_cells_1pct2)
+    # combine
+    retained_genes = c(retained_genes1, retained_genes2)
+    tensor_file = paste0(tensor_dir,"CD4_NC_",pct,"pct_subset/CD4_NC_",pct,"pct_subset.cis_qtl_pairs.chr",chrom,".csv")
+    tensor_df_all = fread(tensor_file)
+    df_gene = data.frame(gene = retained_genes)
+    for (gene in retained_genes){
+        # SAIGE-QTL
+        saige_file = paste0(saige_dir,"subset_",pct,"pct/",gene,"_",pct,"pct_CD4_NC_poisson_test_cis")
+        if (file.exists(saige_file) == FALSE){next}
+        saige_df = fread(saige_file)
+        saige_snps = unique(saige_df$MarkerID)
+        # TensorQTL
+        tensor_df = tensor_df_all[tensor_df_all$phenotype_id == gene,]
+        tensor_snps = unique(tensor_df$variant_id)
+        # get variants tested in both
+        common_snps = saige_snps[saige_snps %in% tensor_snps]
+        # get CCT values
+        saige_acat_all = get_CCT_pvalue(saige_df$p.value)
+        saige_acat_common = get_CCT_pvalue(saige_df[saige_df$MarkerID %in% common_snps,"p.value"]$p.value)
+        tensor_acat_all = get_CCT_pvalue(tensor_df$pval_nominal)
+        tensor_acat_common = get_CCT_pvalue(tensor_df[tensor_df$variant_id %in% common_snps,"pval_nominal"]$pval_nominal)
+        # add to data frame
+        df_gene[df_gene$gene == gene,"saige_acat_all"] = saige_acat_all
+        df_gene[df_gene$gene == gene,"saige_acat_common"] = saige_acat_common
+        df_gene[df_gene$gene == gene,"tensor_acat_all"] = tensor_acat_all
+        df_gene[df_gene$gene == gene,"tensor_acat_common"] = tensor_acat_common
+    }
+    df_gene = df_gene[rowSums(is.na(df_gene)) == 0, ] 
+    df_gene$qv_saige_common = qvalue(df_gene$saige_acat_common, pi0=1)$qvalues
+    df_gene$qv_tensor_common = qvalue(df_gene$tensor_acat_common, pi0=1)$qvalues
+    df_gene$qv_saige_all = qvalue(df_gene$saige_acat_all, pi0=1)$qvalues
+    df_gene$qv_tensor_all = qvalue(df_gene$tensor_acat_all, pi0=1)$qvalues
+    out_file = paste0(out_dir, "chr",chrom,"_",pct,"pct.csv")
+    fwrite(df_gene, out_file)
+}
+
+
+
+
