@@ -16,6 +16,6 @@ for (file in matrix_files){
     df = as.data.frame(fread(paste0(matrix_dir,file)))
     df_matrix_snps = as.data.frame(data.table(snps)[data.table(df), on="SNP", allow.cartesian=TRUE])
     df_matrix_snps$MarkerID = gsub("_.*","",df_matrix_snps$snpid)
-    out_file = paste(out_dir,gsub(".tsv","_snps.tsv",file))
+    out_file = paste0(out_dir,gsub(".tsv","_snps.tsv",file))
     fwrite(df_matrix_snps, out_file)
 }
