@@ -10,8 +10,8 @@ The following folders contain scripts for data processing and analysis.
 
 A short description can be found below:
 
-* [Plotting notebooks](Plotting_Notebooks)
-* [SAIGE-QTL runners](saige_qtl_runners)
-* [downstream analyses](Rscripts_downstream) (plotting, summarising) scripts
+* [Plotting notebooks](Plotting_Notebooks): notebooks to reproduce all figures, main and supplementary.
+* [SAIGE-QTL runners](saige_qtl_runners): example scripts to run SAIGE-QTL on HPC.
+* [downstream analyses](Rscripts_downstream): scripts to summarise data and results using R.
 * (private) [input file making scripts](https://github.com/annacuomo/Notebooks_private/tree/main/scripts/saigeqtl_onek1k)
 
