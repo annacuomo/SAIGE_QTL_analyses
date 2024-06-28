@@ -14,7 +14,7 @@ A short description can be found below:
 * [SAIGE-QTL runners](saige_qtl_runners): example scripts to run SAIGE-QTL on HPC.
 * [downstream analyses](Rscripts_downstream): scripts to summarise data and results using R.
 * [preprocessing scripts](preprocessing): scripts for preprocessing and input files generation.
-* [tensor_qtl](tensor_qtl):
+* [TensorQTL runners](tensor_qtl): preprocessing scripts and runners for TensorQTL on HPC.
 * [SMR](SMR): summary-based Mendelian Randomisation.
 
 <!--- 
