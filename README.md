@@ -1,6 +1,14 @@
-# SAIGE-QTL analyses
+# Efficient and accurate mixed model association tool for single-cell eQTL analysis 
 
-Analyses as part of the [SAIGE-QTL](https://github.com/weizhou0/qtl) paper writing.
+This repository contains scripts for data processing, analysis and figure generation for our paper introducing [SAIGE-QTL](https://github.com/weizhou0/qtl), a new method for single-cell eQTL mapping:
+
+Zhou*, Cuomo*, et al. [Efficient and accurate mixed model association tool for single-cell eQTL analysis](https://www.medrxiv.org/content/10.1101/2024.05.15.24307317v1), medRxiv, 2024.
+
+## Analysis scripts
+
+The following folders contain scripts for data processing and analysis.
+
+A short description can be found below:
 
 * [SAIGE-QTL runners](saige_qtl_runners)
 * [downstream analyses](Rscripts_downstream) (plotting, summarising) scripts
