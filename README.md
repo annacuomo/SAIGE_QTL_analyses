@@ -13,6 +13,10 @@ A short description can be found below:
 * [Plotting notebooks](Plotting_Notebooks): notebooks to reproduce all figures, main and supplementary.
 * [SAIGE-QTL runners](saige_qtl_runners): example scripts to run SAIGE-QTL on HPC.
 * [downstream analyses](Rscripts_downstream): scripts to summarise data and results using R.
-* [preprocessing scripts](preprocessing): scripts for preprocessing and input files generation
-* (private) [input file making scripts](https://github.com/annacuomo/Notebooks_private/tree/main/scripts/saigeqtl_onek1k)
+* [preprocessing scripts](preprocessing): scripts for preprocessing and input files generation.
+* [tensor_qtl](tensor_qtl):
+* [SMR](SMR): summary-based Mendelian Randomisation.
 
+<!--- 
+* (private) [input file making scripts](https://github.com/annacuomo/Notebooks_private/tree/main/scripts/saigeqtl_onek1k)
+--->
