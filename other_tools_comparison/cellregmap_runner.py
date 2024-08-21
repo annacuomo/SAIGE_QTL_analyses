@@ -1,3 +1,6 @@
+# to run
+# /usr/bin/time -o /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/logs/RPL23A.cis.chr17.cellregmap.logs.txt -v /share/ScratchGeneral/anncuo/jupyter/conda_notebooks/envs/cellregmap_notebook/bin/ cellregmap_runner.py /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/input_files/RPL23A.cis.chr17.input.txt /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/pvals/
+
 import sys
 
 import itertools
@@ -5,6 +8,9 @@ import pandas as pd
 from numpy import array, split, cumsum, zeros, append
 
 from cellregmap import run_association_fast
+
+input_file = str(sys.argv[1])
+output_path = str(sys.argv[2])
 
 def get_groups_from_smf(smf_df):
     n_samples = smf_df.shape[0]
@@ -23,9 +29,10 @@ def get_block_hK_from_groups(groups):
         hM[idx, i] = 1.0
     return hM
 
-# get input file
+# get gene from filename
+gene = input_file.split('/')[-1].split('.')[0]
+
 # combined file for each gene including gene, covs, snps
-input_file = str(sys.argv[1])
 input_df = pd.read_csv(input_file, sep='\t')
 
 # expression of relevant gene
@@ -51,4 +58,8 @@ hK = get_block_hK_from_groups(groups)
 # run
 pvals = run_association_fast(y=y, W=W.values, E=C.values, G=G, hK=hK)[0]
 
-# TO DO: save
+# save
+variants = input_df.columns[17:input_df.shape[1]]
+pvals_df = pd.DataFrame({'variants': variants, 'pvals': pvals}, columns=[gene])
+ouput_file = f'{output_path}/{gene}_pvals.csv'
+pvals_df.to_csv(output_file)
