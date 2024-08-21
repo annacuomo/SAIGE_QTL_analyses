@@ -1,5 +1,5 @@
 # to run
-# /usr/bin/time -o /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/logs/RPL23A.cis.chr17.cellregmap.logs.txt -v /share/ScratchGeneral/anncuo/jupyter/conda_notebooks/envs/cellregmap_notebook/bin/ cellregmap_runner.py /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/input_files/RPL23A.cis.chr17.input.txt /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/pvals/
+# /usr/bin/time -o /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/logs/RPL23A.cis.chr17.cellregmap.logs.txt -v /share/ScratchGeneral/anncuo/jupyter/conda_notebooks/envs/cellregmap_notebook/bin/python cellregmap_runner.py /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/input_files/RPL23A.cis.chr17.input.txt /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/pvals/
 
 import sys
 
