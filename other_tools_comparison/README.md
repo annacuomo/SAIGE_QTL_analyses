@@ -1,5 +1,9 @@
 # Other tools comparison
 
+## Recap
+
+* [CellRegMap association test runner](cellregmap_runner.py)
+
 ## Direct comparisons
 
 * [Nathan et al](https://www.nature.com/articles/s41586-022-04713-1) use a Poisson mixed model as implemented in R (`lme4::glmer`)([code](https://github.com/immunogenomics/sceQTL/blob/main/scripts/singlecell/poisson_multivariate.R#L44-L46)).
