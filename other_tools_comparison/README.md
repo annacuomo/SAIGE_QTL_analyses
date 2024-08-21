@@ -13,4 +13,4 @@ On the other hand, [GASPACHO](https://www.nature.com/articles/s41588-023-01421-y
 As the authors of both manuscripts state in their discussion, these tools do not scale well to large datasets, and should mostly be used for interpretation of existing eQTLs rather than for discovery.
 More to the point, they test for different things, not the presence or absence of an eQTL but rather whether an eQTL's strength is modulated by a cell context / state.
 
-We ran GASPACHO and CellRegMap's interaction test for OneK1K using PEER factors as cell states and show their computing time but a direct comparison with SAIGE-QTL would not be meaningful.
+We ran GASPACHO and CellRegMap's interaction test for [OneK1K](https://www.science.org/doi/full/10.1126/science.abf3041) using PEER factors as cell states and show their computing time but a direct comparison with SAIGE-QTL would not be meaningful.
