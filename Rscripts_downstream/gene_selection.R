@@ -35,10 +35,11 @@ p = ggplot(data.frame(pct0s = pct0s, n_genes = n_genes), aes(x=pct0s, y=n_genes)
 p = p + xlab("Proportion of 0s") + ylab("Number of genes") + ylim(c(0,1500))
 p + theme_classic() + theme(text = element_text(size=30))
 
-# select one gene for each bin
+# select ten genes for each bin
 set.seed(100)
-my_genes = c()  # initially empty gene collection
-for (k in pct0s){
+df_list = list()
+for (k in df1$pct0s){
+#     print(k)
     bin_genes = c()  # bin-specific gene collector
     for (i in 3:(ncol(df0)-10)){
         x = sum(df0[,i]>0)
@@ -48,10 +49,22 @@ for (k in pct0s){
         }
     }
     # for each bin, select one gene at random
-    sel_gene = bin_genes[sample(length(bin_genes), 1)]
-    # add selected genes to gene collection
-    my_genes = c(my_genes, sel_gene)
+    sel_genes = bin_genes[sample(length(bin_genes), min(10,length(bin_genes)))]
+    df_curr = data.frame(pct=k)
+    n=length(sel_genes)
+    if (n>=10){
+        df_curr[paste0('gene',1:10)] = sel_genes
+    }
+    if (n<10){
+        df_curr[paste0('gene',1:n)] = sel_genes
+        df_curr[paste0('gene',(n+1):10)] = 'null'
+    }
+    # add selected genes to dataframe
+    df_list[[paste0('pct',k)]] = df_curr
 }
+df_combine = rbindlist(df_list)
+
+my_genes = sel_genes
 
 for (gene in my_genes){
     df_to_plot = data.frame(gene = df0[,gene])
