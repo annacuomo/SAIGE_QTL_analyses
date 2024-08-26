@@ -2,12 +2,13 @@
 
 ## Recap
 
-* [CellRegMap association test runner](cellregmap_runner.py)
+* [CellRegMap association test python script](cellregmap_runner.py)
+* [CellRegMap association test runner](run_cellregmap.qsub)
 
 ## Direct comparisons
 
 * [Nathan et al](https://www.nature.com/articles/s41586-022-04713-1) use a Poisson mixed model as implemented in R (`lme4::glmer`)([code](https://github.com/immunogenomics/sceQTL/blob/main/scripts/singlecell/poisson_multivariate.R#L44-L46)).
-* [CellRegMap](https://www.embopress.org/doi/full/10.15252/msb.202110663) has an `association test` mode that uses a linear mixed model as implemented in the [limix python package](https://github.com/limix/glimix-core).
+* [CellRegMap](https://www.embopress.org/doi/full/10.15252/msb.202110663) has an `association test` mode that uses a linear mixed model as implemented in the [(g)limix python package](https://github.com/limix/glimix-core).
 
 Because these test for standard eQTL effects, we can compare the performance of SAIGE-QTL to these directly, both in terms of computation and memory cost, and to compare the actual results.
 
