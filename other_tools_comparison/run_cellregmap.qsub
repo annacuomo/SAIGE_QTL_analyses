@@ -1,0 +1,21 @@
+#!/bin/bash
+#$ -S /bin/bash
+#$ -cwd
+#$ -V
+#$ -r yes
+#$ -l mem_requested=80G
+#$ -l tmp_requested=40G
+#$ -N add_metadata_per_sample
+#$ -q short.q
+#$ -e /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/ .err
+#$ -o /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/ .log
+#$ -t 1-95
+#$ -m ae
+#$ -M a.cuomo@garvan.org.au
+
+PY_PATH="/share/ScratchGeneral/anncuo/jupyter/conda_notebooks/envs/cellregmap_notebook/bin"
+PYSCRIPT="/share/ScratchGeneral/anncuo/github_repos/SAIGE_QTL_analyses/other_tools_comparison/cellregmap_runner.py"
+OUT_PATH="/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/pvals/"
+
+# Do the main job
+/usr/bin/time -o ${TIME_LOG_PATH} -v ${PY_PATH}/python ${PYSCRIPT} ${INPUT_FILE} ${OUT_PATH}
