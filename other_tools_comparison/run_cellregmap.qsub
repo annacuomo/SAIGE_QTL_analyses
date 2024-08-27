@@ -23,7 +23,7 @@ PARAMS="/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_
 
 GENE=`head -n $SGE_TASK_ID $PARAMS | tail -n 1 | awk '{print $1}'`
 
-echo "Running CellRegMap association tets for gene: ${SAMPLE} to evaluate computation cost"
+echo "Running CellRegMap association tets for gene: ${GENE} to evaluate computation cost"
 
 # Do the main job
 /usr/bin/time -o ${TIME_LOG_PATH}/${GENE}.cis.cellregmap.logs.txt -v ${PY_PATH}/python ${PYSCRIPT} ${INPUT_FILES_PATH}/${GENE}.cis.geno.pheno.txt ${OUT_PATH}
