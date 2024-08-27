@@ -15,9 +15,13 @@
 
 PY_PATH="/share/ScratchGeneral/anncuo/jupyter/conda_notebooks/envs/cellregmap_notebook/bin"
 PYSCRIPT="/share/ScratchGeneral/anncuo/github_repos/SAIGE_QTL_analyses/other_tools_comparison/cellregmap_runner.py"
-TIME_LOG_PATH="/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/logs/"
-INPUT_FILES_PATH="/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/input_files/"
-OUT_PATH="/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/pvals/"
+TIME_LOG_PATH="/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/logs"
+INPUT_FILES_PATH="/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/input_files"
+OUT_PATH="/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/pvals"
+
+PARAMS="/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/gene_list.txt" 
+
+GENE=`head -n $SGE_TASK_ID $PARAMS | tail -n 1 | awk '{print $1}'`
 
 # Do the main job
-/usr/bin/time -o ${TIME_LOG_PATH}/ -v ${PY_PATH}/python ${PYSCRIPT} ${INPUT_FILES_PATH}{GENE}.cis.chr17.input.txt ${OUT_PATH}
+/usr/bin/time -o ${TIME_LOG_PATH}/{GENE}.cis.cellregmap.logs.txt -v ${PY_PATH}/python ${PYSCRIPT} ${INPUT_FILES_PATH}/{GENE}.cis.geno.pheno.txt ${OUT_PATH}
