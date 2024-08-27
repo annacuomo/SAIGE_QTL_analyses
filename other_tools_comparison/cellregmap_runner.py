@@ -1,5 +1,6 @@
 # to run
 # /usr/bin/time -o /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/logs/RPL23A.cis.chr17.cellregmap.logs.txt -v /share/ScratchGeneral/anncuo/jupyter/conda_notebooks/envs/cellregmap_notebook/bin/python cellregmap_runner.py /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/input_files/RPL23A.cis.chr17.input.txt /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/pvals/
+# runner at (local copy of): https://github.com/annacuomo/SAIGE_QTL_analyses/other_tools_comparison/run_cellregmap.qsub
 
 import sys
 
@@ -36,7 +37,7 @@ gene = input_file.split('/')[-1].split('.')[0]
 input_df = pd.read_csv(input_file, sep='\t')
 
 # expression of relevant gene
-y = input_df['E']
+y = input_df['gene_sct']
 
 # sample covariates
 W = input_df[['age','sex','pc1','pc2','pc3','pc4','pc5','pc6']]
