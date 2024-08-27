@@ -5,7 +5,7 @@
 #$ -r yes
 #$ -l mem_requested=80G
 #$ -l tmp_requested=40G
-#$ -N add_metadata_per_sample
+#$ -N run_cellregmap_per_gene
 #$ -q short.q
 #$ -e /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/regular_logs.err
 #$ -o /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/regular_logs.log
