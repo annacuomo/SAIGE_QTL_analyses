@@ -8,9 +8,9 @@
 #$ -N run_cellregmap_per_gene
 #$ -pe smp 1
 #$ -q short.q
-#$ -e /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/regular_logs.err
-#$ -o /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/regular_logs.log
-#$ -t 1-95
+#$ -e /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/regular_logs_OMP_NUM_THREADS.err
+#$ -o /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/regular_logs_OMP_NUM_THREADS.log
+#$ -t 1-1
 #$ -m ae
 #$ -M a.cuomo@garvan.org.au
 
@@ -26,5 +26,7 @@ GENE=`head -n $SGE_TASK_ID $PARAMS | tail -n 1 | awk '{print $1}'`
 
 echo "Running CellRegMap association tets for gene: ${GENE} to evaluate computation cost"
 
+export OMP_NUM_THREADS=1
+
 # Do the main job
-/usr/bin/time -o ${TIME_LOG_PATH}/${GENE}.cis.cellregmap.logs.txt -v ${PY_PATH}/python ${PYSCRIPT} ${INPUT_FILES_PATH}/${GENE}.cis.geno.pheno.txt ${OUT_PATH}
+/usr/bin/time -o ${TIME_LOG_PATH}/${GENE}.cis.cellregmap.logs_OMP_NUM_THREADS.txt -v ${PY_PATH}/python ${PYSCRIPT} ${INPUT_FILES_PATH}/${GENE}.cis.geno.pheno.txt ${OUT_PATH}
