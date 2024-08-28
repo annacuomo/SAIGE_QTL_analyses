@@ -1,3 +1,5 @@
+#!/usr/bin/env Rscript
+
 """
 Takes as input the directory containing all input files
 creates a data frame with a row per file, 
