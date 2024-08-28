@@ -8,8 +8,8 @@
 #$ -N run_cellregmap_per_gene
 #$ -pe smp 1
 #$ -q short.q
-#$ -e /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/regular_logs_OMP_NUM_THREADS.err
-#$ -o /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/regular_logs_OMP_NUM_THREADS.log
+#$ -e /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/regular_logs_pfs.err
+#$ -o /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/regular_logs_pfs.log
 #$ -t 1-95
 #$ -m ae
 #$ -M a.cuomo@garvan.org.au
@@ -18,7 +18,7 @@ PY_PATH="/share/ScratchGeneral/anncuo/jupyter/conda_notebooks/envs/cellregmap_no
 PYSCRIPT="/share/ScratchGeneral/anncuo/github_repos/SAIGE_QTL_analyses/other_tools_comparison/cellregmap_runner.py"
 TIME_LOG_PATH="/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/logs"
 INPUT_FILES_PATH="/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/input_files/cisgenotype_sct_forMethodCompare"
-OUT_PATH="/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/pvals"
+OUT_PATH="/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/pvals_pfs_as_covs"
 
 PARAMS="/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/gene_list.txt" 
 
