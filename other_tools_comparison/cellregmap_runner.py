@@ -40,7 +40,7 @@ input_df = pd.read_csv(input_file, sep='\t')
 y = input_df['gene_sct']
 
 # sample covariates
-W = input_df[['age','sex','pc1','pc2','pc3','pc4','pc5','pc6']]
+W = input_df[['age','sex','pc1','pc2','pc3','pc4','pc5','pc6','pf1','pf2']]
 
 # cell contexts
 C = input_df[['pf1','pf2']]
