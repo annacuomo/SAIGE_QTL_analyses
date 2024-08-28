@@ -1,3 +1,9 @@
+"""
+Takes as input the directory containing all input files
+creates a data frame with a row per file, 
+extracts gene names from file names as an additional column
+"""
+
 library(data.table)
 
 args = commandArgs(trailingOnly=TRUE)
