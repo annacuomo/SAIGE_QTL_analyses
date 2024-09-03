@@ -70,10 +70,10 @@ groups = get_groups_from_smf(smf_df)
 hK = get_block_hK_from_groups(groups)
 
 # run
-pvals = run_association_fast(y=y, W=W.values, E=C.values, G=G, hK=hK)[0]
+pvals = run_interaction(y=y, W=W.values, E=C.values, G=G, hK=hK)[0]
 
 # save
 variants = input_df.columns[17:(input_df.shape[1]-1)]
 pvals_df = pd.DataFrame({'variants': variants, 'pvals': pvals})
-output_file = f'{output_path}/{gene}_pvals.csv'
+output_file = f'{output_path}/{gene}_interaction_pvals.csv'
 pvals_df.to_csv(output_file)
