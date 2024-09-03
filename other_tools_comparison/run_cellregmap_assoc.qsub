@@ -15,7 +15,7 @@
 #$ -M a.cuomo@garvan.org.au
 
 PY_PATH="/share/ScratchGeneral/anncuo/jupyter/conda_notebooks/envs/cellregmap_notebook/bin"
-PYSCRIPT="/share/ScratchGeneral/anncuo/github_repos/SAIGE_QTL_analyses/other_tools_comparison/cellregmap_runner.py"
+PYSCRIPT="/share/ScratchGeneral/anncuo/github_repos/SAIGE_QTL_analyses/other_tools_comparison/cellregmap_association_runner.py"
 TIME_LOG_PATH="/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/logs"
 INPUT_FILES_PATH="/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/input_files/cisgenotype_sct_forMethodCompare"
 OUT_PATH="/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/pvals_pfs_as_covs"
