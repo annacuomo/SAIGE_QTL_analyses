@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # to run
 # /usr/bin/time -o /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/logs/RPL23A.cis.chr17.cellregmap.logs.txt -v /share/ScratchGeneral/anncuo/jupyter/conda_notebooks/envs/cellregmap_notebook/bin/python cellregmap_runner.py /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/input_files/RPL23A.cis.chr17.input.txt /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/pvals/
-# runner at (local copy of): https://github.com/annacuomo/SAIGE_QTL_analyses/other_tools_comparison/run_cellregmap.qsub
+# runner at (local copy of): https://github.com/annacuomo/SAIGE_QTL_analyses/other_tools_comparison/run_cellregmap_assoc.qsub
 
 """
 Runs CellRegMap's association test for a given gene
