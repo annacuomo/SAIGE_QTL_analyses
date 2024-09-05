@@ -1,0 +1,32 @@
+#!/bin/bash
+#$ -S /bin/bash
+#$ -cwd
+#$ -V
+#$ -r yes
+#$ -l mem_requested=80G
+#$ -l tmp_requested=40G
+#$ -N run_cellregmap_per_gene
+#$ -pe smp 1
+#$ -q short.q
+#$ -e /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/regular_logs_interaction.err
+#$ -o /directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/regular_logs_interaction.log
+#$ -t 1-95
+#$ -m ae
+#$ -M a.cuomo@garvan.org.au
+
+PY_PATH="/share/ScratchGeneral/anncuo/jupyter/conda_notebooks/envs/cellregmap_notebook/bin"
+PYSCRIPT="/share/ScratchGeneral/anncuo/github_repos/SAIGE_QTL_analyses/other_tools_comparison/cellregmap_interaction_runner.py"
+TIME_LOG_PATH="/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/logs"
+INPUT_FILES_PATH="/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/input_files/cisgenotype_sct_forMethodCompare"
+OUT_PATH="/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/interaction_test/pvals_pfs_as_covs"
+
+PARAMS="/directflow/SCCGGroupShare/projects/anncuo/OneK1K/saige_eqtl/cellregmap_comparison/gene_list.txt" 
+
+GENE=`head -n $SGE_TASK_ID $PARAMS | tail -n 1 | awk '{print $1}'`
+
+echo "Running CellRegMap interaction tets for gene: ${GENE} to evaluate computation cost"
+
+export OMP_NUM_THREADS=1
+
+# Do the main job
+/usr/bin/time -o ${TIME_LOG_PATH}/${GENE}.cis.cellregmap.logs_OMP_NUM_THREADS.txt -v ${PY_PATH}/python ${PYSCRIPT} ${INPUT_FILES_PATH}/${GENE}.cis.geno.pheno.txt ${OUT_PATH}
